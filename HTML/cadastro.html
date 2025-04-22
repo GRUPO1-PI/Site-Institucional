@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonicorp - Cadastro</title>
+    <link rel="stylesheet" href="../CSS/paginaCadastro.css">
+    <link rel="shortcut icon " href="../IMG/sonicorp.png">
+</head>
+
+<body>
+    <header>
+
+        <div class="container">
+            <div class="Sonicorp">
+                <a href="./cadastro.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="../index.html">Home</a>
+                </li>
+                <li>
+                    <a href="./calculadoraFinanceira.html">Simulador</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li class="agora">
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+            <div class="perfil">
+                <a href="./login.html"><img src="../IMG/iconePerfil.png" alt="Ícone de Perfil"></a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="formulario">
+        <div class="container">
+            <div class="simConta">
+                <h2>Já tem uma conta?</h2>
+                <p>Já é cliente? Faça login para acessar suas informações e continuar de onde parou! Tudo em um só lugar, sempre que você precisar.</p>
+                <div class="botaoSimconta">
+                    <button onclick="window.location.href = './login.html';">Login ➔</button>
+                </div>
+            </div>
+
+            <div class="crie">
+                <div class="inputs">
+                    <h2>Crie uma conta:</h2>
+                    <h4>Nome Completo:</h4>
+                    <input type="text" id="iptNome">
+                    <h4>E-mail:</h4>
+                    <input type="email" id="iptEmail">
+                    <h4>Senha:</h4>
+                    <input type="password" id="iptSenha">
+
+                    <div class="mesmo">
+                        <div class="campo">
+                            <h4>Telefone:</h4>
+                            <input type="text" id="iptTelefone">
+                        </div>
+                        <div class="campo">
+                            <h4>CNPJ:</h4>
+                            <input type="text" id="iptCnpj">
+                        </div>
+                    </div>
+
+                    <div class="arrumar">
+                        <button onclick="validar()" >Próximo ➔</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+
+            <div class="logoFooter">
+                <a href="./cadastro.html"> <img src="../IMG/sonicorp.png" alt="Logo - Sonicorp"></a>
+            </div>
+
+            <div class="colunas">
+                <div class="coluna"> <!-- modificar com os links futuramente (bem futuramente) -->
+                    <h3>Início</h3>
+                    <p>Home</p>
+                    <p>Simulador</p>
+                    <p>Login</p>
+                    <p>Cadastro</p>
+                </div>
+                <div class="coluna">
+                    <h3>Sobre nós</h3>
+                    <p>Sobre a empresa</p>
+                    <p>Contato</p>
+                </div>
+                <div class="coluna">
+                    <h3>Suporte</h3>
+                    <p>Ajuda</p>
+                </div>
+            </div>
+
+
+            <div class="contatoSocial">
+                <div class="icones">
+                    <a href="#" target="_blank"><img src="../IMG/iconeTwitter.png" alt="Ícone do Twitter (X)"></a>
+                    <a href="#" target="_blank"><img src="../IMG/iconeInstagram.png" alt="Ícone do Instagram"></a>
+                    <a href="#" target="_blank"><img src="../IMG/iconeLinkedin.png" alt="Ícone do Linkedin"></a>
+                </div>
+                <button>Contato</button>
+            </div>
+
+        </div>
+
+        <div class="corp">
+            <p>© Copyright - Sonicorp - Todos os Direitos Reservados</p>
+        </div>
+
+    </footer>
+
+    <script src="../JS/validarCadastro.js"></script>
+
+</body>
+
+</html>

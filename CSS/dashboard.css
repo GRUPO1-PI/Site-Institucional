@@ -1,0 +1,214 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #172735;
+}
+
+header {
+  background-color: #264259;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.Sonicorp {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0;
+  padding: 5px;
+}
+
+.Sonicorp img {
+  width: 200px;
+  padding-right: 200px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  list-style: none;
+  width: 300px;
+  padding-left: 450px;
+  gap: 30px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.lista {
+  list-style-type: none;
+}
+
+.agora {
+  font-weight: bolder;
+}
+
+.perfil {
+  margin-left: auto;
+  padding-right: 20px;
+}
+
+.perfil img {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+  cursor: pointer;
+}
+
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  
+}
+
+#container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1Container {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #ccc;
+  margin-bottom: 20px;
+  font-size: 23px;
+}
+
+#container .container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  height: 380px;
+  background-color: #ccc;
+  border-radius: 10px;
+  box-shadow: 3px 3px #000000e3;
+}
+
+
+#divGrafico {
+  width: 400px;
+  text-align: center;
+}
+
+
+footer {
+  background-color: #264259;
+  padding: 20px 40px 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.logoFooter img {
+  height: 70px;
+  padding-left: 20px;
+}
+
+.colunas {
+  display: flex;
+  padding-right: 100px;
+  gap: 110px;
+}
+
+.coluna h3 {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.coluna p {
+  margin: 2px 0;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+footer .contatoSocial {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 10px;
+
+}
+
+footer .icones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 35px;
+  padding-top: 15px;
+}
+
+.icones img {
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icones img:hover {
+  transform: translateY(-5px);
+}
+
+footer button {
+  background-color: #76a6a2da;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 6px;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+footer .corp {
+  color: #ffffff;
+  opacity: 0.6;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 0;
+}
