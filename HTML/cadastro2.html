@@ -14,7 +14,7 @@
 
         <div class="container">
             <div class="Sonicorp">
-                <a href="./cadastro2.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
+                <a href="./index.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
             </div>
             <ul class="navbar">
                 <li>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="campo">
                             <h4>CEP:</h4>
-                            <input type="text" id="input_cep">
+                            <input type="text" id="input_cep" maxlength="8">
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@
                         </div>
                         <div class="campo">
                             <h4>Número:</h4>
-                            <input type="text" id="input_numero">
+                            <input type="number" id="input_numero">
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="arrumar">
-                        <button onclick="window.location.href = './login.html';">Cadastre-se</button>
+                        <button onclick="validar()">Cadastre-se</button>
                     </div>
                 </div>
 
@@ -164,3 +164,7 @@
 
 
     </footer>
+    <script src="../JS/validarCadastro2.js"></script>
+</body>
+
+</html>

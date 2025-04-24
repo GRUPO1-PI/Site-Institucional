@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
 </head>
-<!-- edicao com padronizacao das outras paginas (feita por mim) -->
 
 <body>
 
     <header>
         <div class="container">
             <div class="Sonicorp">
-                <a href="./dashboard.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
+                <a href="./index.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
             </div>
             <ul class="navbar">
                 <li>
@@ -25,7 +24,7 @@
                     <a href="./calculadoraFinanceira.html">Simulador</a>
                 </li>
                 <li>|</li>
-                <li>
+                <li class="agora">
                     <a href="./login.html">Login</a>
                 </li>
                 <li>
@@ -35,96 +34,503 @@
             <div class="perfil">
                 <a href="./login.html"><img src="../IMG/iconePerfil.png" alt="Ícone de Perfil"></a>
             </div>
-        </div>
 
+            <div class="logout">
+                <a href="../index.html"><img src="../IMG/logout.webp" alt="Ícone de Logout" onclick="logout(event)"></a>
+            </div>
+        </div>
     </header>
+
+    <select onchange="teste()" id="select_setor">
+        <option value="0" disabled selected>Setor:</option>
+        <option value="selecao">Seleção</option>
+        <option value="higienizacao">Higienização</option>
+        <option value="processamento">Processamento</option>
+        <option value="embalagem">Embalagem</option>
+        <option value="armazenamento">Armazenamento</option>
+        <option value="distribuicao">Distribuição</option>
+    </select>
+
+    <select onchange="teste()" id="select_esteira">
+        <option value="0" disabled selected>Esteira:</option>
+        <option value="1">1</option>
+        <option id="optEsteira2" value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option id="optEsteira6" value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+
+
+    <select onchange="teste()" id="select_sensor">
+        <option value="0" disabled selected>Sensor:</option>
+        <option id="optSensor1" value="A24">A24</option>
+        <option id="optSensor2" value="H34">H34</option>
+        <option id="optSensor3" value="C04">C04</option>
+        <option id="optSensor4" value="X94">X94</option>
+    </select>
+
 
     <main>
 
-        <div class="h1Container">
-            <h1>Dashboard</h1>
+
+        <div class="topCards">
+            <div class="card">
+                <img src="../IMG/iconePerfil.png" alt="">
+                <div class="info">
+                    <p>slaaa</p>
+                    <h3>exemplo</h3>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../IMG/iconePerfil.png" alt="">
+                <div class="info">
+                    <p>sla</p>
+                    <h3>exemplo</h3>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../IMG/iconePerfil.png" alt="">
+                <div class="info">
+                    <p>sla</p>
+                    <h3>exemplo</h3>
+                </div>
+            </div>
         </div>
 
         <div id="container">
 
             <div id="divGrafico">
                 <div class="container">
-                    <h2>Monitoramento de Sensor Individual por minuto</h2>
+                    <h2 id="tituloSensorIndi">Selecione Sensor</h2>
                     <canvas id="individual"></canvas>
                 </div>
             </div>
             <div id="divGrafico">
                 <div class="container">
-                    <h2>Alertas 13/04/2025</h2>
+                    <h2>Monitoramento por setor 13/04/2025</h2>
                     <canvas id="alertas"></canvas>
                 </div>
             </div>
             <div id="divGrafico">
                 <div class="container">
-                    <h2>Monitoramento de Sensores por minuto</h2>
+                    <h2>Monitoramento de Alerta de Sensores por minuto</h2>
                     <canvas id="monitoramentoPorMinuto"></canvas>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-        <div class="container">
-
-            <div class="logoFooter">
-                <a href="./dashboard.html"> <img src="../IMG/sonicorp.png" alt="Logo - Sonicorp"></a>
-            </div>
-
-            <div class="colunas">
-                <div class="coluna"> <!-- modificar com os links futuramente (bem futuramente) -->
-                    <h3>Início</h3>
-                    <p>Home</p>
-                    <p>Simulador</p>
-                    <p>Login</p>
-                    <p>Cadastro</p>
-                </div>
-                <div class="coluna">
-                    <h3>Sobre nós</h3>
-                    <p>Sobre a empresa</p>
-                    <p>Contato</p>
-                </div>
-                <div class="coluna">
-                    <h3>Suporte</h3>
-                    <p>Ajuda</p>
-                </div>
-            </div>
-
-
-            <div class="contatoSocial">
-                <div class="icones">
-                    <a href="#" target="_blank"><img src="../IMG/iconeTwitter.png" alt="Ícone do Twitter (X)"></a>
-                    <a href="#" target="_blank"><img src="../IMG/iconeInstagram.png" alt="Ícone do Instagram"></a>
-                    <a href="#" target="_blank"><img src="../IMG/iconeLinkedin.png" alt="Ícone do Linkedin"></a>
-                </div>
-                <button>Contato</button>
-            </div>
-
-        </div>
-        </div>
-        <div class="corp">
-            <p>© Copyright - Sonicorp - Todos os Direitos Reservados</p>
-        </div>
-
-    </footer>
-
 
 </body>
 
 </html>
+<script src="../JS/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const individual = new Chart(document.getElementById('individual'), {
+
+    function teste() {
+        var sensor = select_sensor.value;
+        var esteira = select_esteira.value;
+        var setor = select_setor.value;
+
+        if (setor == 'processamento') {
+            monitoramentoPorMinuto.destroy();
+            monitoramentoPorMinuto = new Chart(document.getElementById('monitoramentoPorMinuto'), {
+                type: 'bar',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '08:04', '08:05'],
+                    datasets: [{
+                        label: 'A24',
+                        data: [1, 1, 1, 1, 2],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132)'
+                        ],
+
+                    }, {
+                        label: 'H34',
+                        data: [0, 1, 2, 2, 2],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 159, 64)'
+                        ],
+                    }, {
+                        label: 'C04',
+                        data: [1, 2, 3, 3, 4],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 205, 86)'
+                        ]
+                    }, {
+                        label: 'X94',
+                        data: [0, 1, 1, 1, 1],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(75, 192, 192)'
+                        ],
+                    }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
+
+            monitoramentoPorMinuto.update();
+        } else if(setor == 'higienizacao'){
+
+            monitoramentoPorMinuto.destroy();
+            monitoramentoPorMinuto = new Chart(document.getElementById('monitoramentoPorMinuto'), {
+                type: 'bar',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '08:04', '08:05'],
+                    datasets: [{
+                        label: 'B24',
+                        data: [2, 2, 3, 0, 0],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132)'
+                        ],
+
+                    }, {
+                        label: 'I34',
+                        data: [1, 3, 2, 2, 5],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 159, 64)'
+                        ],
+                    }, {
+                        label: 'D04',
+                        data: [4, 4, 5, 1, 0],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 205, 86)'
+                        ]
+                    }, {
+                        label: 'Z94',
+                        data: [2, 1, 1, 2, 1],
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(75, 192, 192)'
+                        ],
+                    }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
+            monitoramentoPorMinuto.update();
+        }
+
+        if (esteira == 2) {
+            optSensor1.innerHTML = 'A24';
+            optSensor1.value = 'A24';
+            optSensor2.innerHTML = 'H34';
+            optSensor2.value = 'H34';
+            optSensor3.innerHTML = 'C04';
+            optSensor3.value = 'C04';
+            optSensor4.innerHTML = 'X94';
+            optSensor4.value = 'X94';
+
+        } else if (esteira == 6) {
+            optSensor1.innerHTML = 'B24';
+            optSensor1.value = 'B24';
+            optSensor2.innerHTML = 'I34';
+            optSensor2.value = 'I34';
+            optSensor3.innerHTML = 'D04';
+            optSensor3.value = 'D04';
+            optSensor4.innerHTML = 'Z94';
+            optSensor4.value = 'Z94';
+        }
+
+        if (sensor == 'A24') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor A24',
+                        data: [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'H34') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor H34',
+                        data: [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'C04') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor C04',
+                        data: [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'X94') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor X94',
+                        data: [0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        }
+
+        if (sensor == 'B24') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor A24',
+                        data: [1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'I34') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor H34',
+                        data: [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'D04') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor C04',
+                        data: [1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        } else if (sensor == 'Z94') {
+            individual.destroy();
+            individual = new Chart(document.getElementById('individual'), {
+                type: 'line',
+                data: {
+                    labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
+                    datasets: [{
+                        label: 'Sensor X94',
+                        data: [1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1],
+                        borderWidth: 2,
+                        backgroundColor: [
+                            'rgba(54, 162, 235)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235)'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '(0-1)'
+                            }
+                        }
+                    }
+                }
+            });
+            individual.update();
+            tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
+        }
+    }
+
+    individual = new Chart(document.getElementById('individual'), {
         type: 'line',
         data: {
-            labels: ['8:01:00', '8:02:00', '8:03:00', '8:04:00', '8:05:00', '8:06:00', '8:07:00', '8:08:00', '8:09:00', '8:10:00'],
+            labels: ['08:01', '08:02', '08:03', '8:04:00', '08:05', '08:06', '08:07', '08:08', '08:09', '08:10'],
             datasets: [{
-                label: 'Sensor A24',
-                data: [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1],
-                borderWidth: 1
+                label: 'Sensor Não Selecionado',
+                // data: [1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1],
+                borderWidth: 2,
+                backgroundColor: [
+                    'rgba(54, 162, 235)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235)'
+                ]
             }]
         },
         options: {
@@ -149,12 +555,12 @@
                 data: [2, 3, 1, 4, 2, 1],
                 borderWidth: 1,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)'
                 ],
             },
             ]
@@ -163,7 +569,7 @@
         options: {
             plugins: {
                 legend: {
-                    display: false
+                    display: false,
                 },
                 title: {
                     display: true,
@@ -172,35 +578,44 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: '(0-1)'
-                    }
                 }
             }
         }
     });
 
-    const monitoramentoPorMinuto = new Chart(document.getElementById('monitoramentoPorMinuto'), {
-        type: 'line',
+    monitoramentoPorMinuto = new Chart(document.getElementById('monitoramentoPorMinuto'), {
+        type: 'bar',
         data: {
-            labels: ['8:01:00', '8:02:00', '8:03:00', '8:04:00', '8:05:00'],
+            labels: ['08:01', '08:02', '08:03', '08:04', '08:05'],
             datasets: [{
-                label: 'A24',
-                data: [1, 0, 0, 0, 1],
-                borderWidth: 3
+                label: 'Setor Não Selecionado',
+                // data: [1, 1, 1, 1, 2],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 99, 132)'
+                ],
+
             }, {
-                label: 'H34',
-                data: [0, 1, 1, 0, 0],
-                borderWidth: 3
+                label: 'Setor Não Selecionado',
+                // data: [0, 1, 2, 2, 2],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 159, 64)'
+                ],
             }, {
-                label: 'C04',
-                data: [1, 1, 0, 0, 1],
-                borderWidth: 3
+                label: 'Setor Não Selecionado',
+                // data: [1, 2, 3, 3, 4],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 205, 86)'
+                ]
             }, {
-                label: 'X94',
-                data: [0, 1, 0, 1, 1],
-                borderWidth: 3
+                label: 'Setor Não Selecionado',
+                // data: [0, 1, 1, 1, 1],
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(75, 192, 192)'
+                ],
             }
 
             ]
@@ -209,10 +624,6 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: '(0-1)'
-                    }
                 }
             }
         }

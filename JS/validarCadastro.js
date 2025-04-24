@@ -41,14 +41,15 @@ function validar(){
 
 
     // Verficação de Telefone
-    if (tel.length != 11){
+    if (tel.length < 11){
         // Número está menor que 11
         alert(`Número de telefone inválido.`)
         valido = false;
     }
 
-    if(cnpj.length != 14){
+    if(cnpj.length < 14){
         alert(`Formatação de CNPJ inválida!`)
+        valido = false;
     }
 
     if (valido){
