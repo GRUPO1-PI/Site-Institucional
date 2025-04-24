@@ -263,7 +263,7 @@
             divMensagem2.innerHTML = `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color: rgb(255, 0, 0);"> R$${totalValorSensor}</span>.</b>`
 
             // Mensagem final
-            var valorEconomizado = totalValorSensor - totalPerda;
+            var valorEconomizado = totalPerda - totalValorSensor;
 
             if (desvio > 0 && tempo > 0) {
                 divMensagemFinal.innerHTML = `<b>Com o nosso serviço de custo R$${totalValorSensor}, a economia de sua empresa seria de  <span style="color: #6bbd19;">R$${valorEconomizado.toFixed(2)}</span>, com o aumento de  <span style="color: #6bbd19;">${((valorEconomizado / totalPerda * 100) / 4).toFixed(2)}% </span>semanal.</b>`;

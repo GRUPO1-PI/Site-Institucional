@@ -71,12 +71,12 @@ header .container {
 
 
 main{
-    height: 650px;
+    height: 478px;
 }
-.card {
+.card { 
     background-color: #2a2a3d;
     border-radius: 16px;
-    padding: 20px;
+    padding: 10px;
     width: 500px;
     display: flex;
     align-items: center;
@@ -108,29 +108,36 @@ main{
     color: white;
 }
 
-.select{
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-}
 select{
     width: 300px;
     height: 30px;
+    background-color: #D9D9D9;
+    height: 45px;
+    font-size: 20px;
+    border-radius: 7px;
+    border: 1px solid #000000;  
 }
 
+.select{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 80px;
+
+}
 
 #container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    padding-top: 70px;
+    padding-top: 25px;
 }
 
 .topCards {
     width: 92%;
     margin: 0 auto;
-    padding-top: 60px;
+    padding-top: 25px;
     display: flex;
     justify-content: center;
     gap: 30px;
