@@ -50,30 +50,30 @@
             <option value="armazenamento">Armazenamento</option>
             <option value="distribuicao">Distribuição</option>
         </select>
-        
+
         <select onchange="teste()" id="select_esteira">
             <option value="0" disabled selected>Esteira:</option>
             <option value="1">1</option>
-        <option id="optEsteira2" value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option id="optEsteira6" value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-    
-    
-    <select onchange="teste()" id="select_sensor">
-        <option value="0" disabled selected>Sensor:</option>
-        <option id="optSensor1" value="A24">A24</option>
-        <option id="optSensor2" value="H34">H34</option>
-        <option id="optSensor3" value="C04">C04</option>
-        <option id="optSensor4" value="X94">X94</option>
-    </select>
-</div>
+            <option id="optEsteira2" value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option id="optEsteira6" value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+
+        <select onchange="teste()" id="select_sensor">
+            <option value="0" disabled selected>Sensor:</option>
+            <option id="optSensor1" value="A24">A24</option>
+            <option id="optSensor2" value="H34">H34</option>
+            <option id="optSensor3" value="C04">C04</option>
+            <option id="optSensor4" value="X94">X94</option>
+        </select>
+    </div>
 
 
     <main>
@@ -97,7 +97,7 @@
             <div class="card">
                 <img src="../IMG/kpi3.png" alt="">
                 <div class="info">
-                    <p id="KPI3_paragrafo" >Maior número de alertas no sensor</p>
+                    <p id="KPI3_paragrafo">Maior número de alertas no sensor</p>
                     <h3 id="KPI3_h3"></h3>
                 </div>
             </div>
@@ -181,14 +181,14 @@
                         y: {
                             beginAtZero: true,
                         }
-                    } 
+                    }
                 }
             });
             monitoramentoPorMinuto.update();
             textoGraficoPorMinuto.innerHTML = `Monitoramento de sensores por setor - 25/04/2024`;
             KPI1_paragrafo.innerHTML = `Alertas do sensor ${sensor}`;
             KPI3_h3.innerHTML = `H34`;
-        } else if(setor == 'higienizacao'){
+        } else if (setor == 'higienizacao') {
 
             monitoramentoPorMinuto.destroy();
             monitoramentoPorMinuto = new Chart(document.getElementById('monitoramentoPorMinuto'), {
@@ -428,7 +428,7 @@
             });
             individual.update();
             tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
-             KPI1_h3.innerHTML = `1`
+            KPI1_h3.innerHTML = `1`
         } else if (sensor == 'I34') {
             individual.destroy();
             individual = new Chart(document.getElementById('individual'), {
@@ -461,7 +461,7 @@
             });
             individual.update();
             tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
-             KPI1_h3.innerHTML = `0`
+            KPI1_h3.innerHTML = `0`
         } else if (sensor == 'D04') {
             individual.destroy();
             individual = new Chart(document.getElementById('individual'), {
@@ -494,7 +494,7 @@
             });
             individual.update();
             tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
-             KPI1_h3.innerHTML = `4`
+            KPI1_h3.innerHTML = `4`
         } else if (sensor == 'Z94') {
             individual.destroy();
             individual = new Chart(document.getElementById('individual'), {
@@ -559,7 +559,7 @@
             }
         }
     });
-     
+
 
     const alertas = new Chart(document.getElementById('alertas'), {
         type: 'bar',
