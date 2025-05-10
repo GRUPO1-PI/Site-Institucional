@@ -53,16 +53,16 @@
 
         <select onchange="teste()" id="select_esteira">
             <option value="0" disabled selected>Esteira:</option>
-            <option value="1">1</option>
-            <option id="optEsteira2" value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option id="optEsteira6" value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+            <option value="1">Esteira 1</option>
+            <option id="optEsteira2" value="2">Esteira 2</option>
+            <option value="3">Esteira 3</option>
+            <option value="4">Esteira 4</option>
+            <option value="5">Esteira 5</option>
+            <option id="optEsteira6" value="6">Esteira 6</option>
+            <option value="7">Esteira 7</option>
+            <option value="8">Esteira 8</option>
+            <option value="9">Esteira 9</option>
+            <option value="10">Esteira 10</option>
         </select>
 
 
@@ -72,6 +72,14 @@
             <option id="optSensor2" value="H34">H34</option>
             <option id="optSensor3" value="C04">C04</option>
             <option id="optSensor4" value="X94">X94</option>
+        </select>
+
+        <select onchange="teste()" id="select_dia">
+            <option value="0" disabled selected>Dia:</option>
+            <option id="optSensor1" value="A24">06/05/2025</option>
+            <option id="optSensor2" value="H34">07/05/2025</option>
+            <option id="optSensor3" value="C04">08/05/2025</option>
+            <option id="optSensor4" value="X94">09/05/2025</option>
         </select>
     </div>
 
@@ -185,7 +193,7 @@
                 }
             });
             monitoramentoPorMinuto.update();
-            textoGraficoPorMinuto.innerHTML = `Monitoramento de sensores por setor - 25/04/2024`;
+            textoGraficoPorMinuto.innerHTML = `Monitoramento de sensores por setor - 25/04/2025`;
             KPI1_paragrafo.innerHTML = `Alertas do sensor ${sensor}`;
             KPI3_h3.innerHTML = `H34`;
         } else if (setor == 'higienizacao') {
@@ -236,7 +244,7 @@
                 }
             });
             monitoramentoPorMinuto.update();
-            textoGraficoPorMinuto.innerHTML = `Monitoramento de sensores por setor - 25/04/2024`
+            textoGraficoPorMinuto.innerHTML = `Monitoramento de sensores por setor - 25/04/2025`
             KPI1_paragrafo.innerHTML = `Alertas do sensor ${sensor}`;
             KPI3_h3.innerHTML = `D04`;
         }
