@@ -191,6 +191,7 @@ header .container {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  position: absolute;
 }
 
 .crie .arrumar{
@@ -291,4 +292,11 @@ footer .corp {
 .incio {
   text-decoration: none;
   color: white;
+}
+
+.legenda {
+  font-size: 1.3vh;
+  margin-top: 1vh;
+  color: #ff0000;
+  height: 0.01vh;
 }

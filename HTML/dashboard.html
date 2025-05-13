@@ -40,95 +40,106 @@
             </div>
         </div>
     </header>
-    <div class="select">
-        <select onchange="teste()" id="select_setor">
-            <option value="0" disabled selected>Setor:</option>
-            <option value="selecao">Seleção</option>
-            <option value="higienizacao">Higienização</option>
-            <option value="processamento">Processamento</option>
-            <option value="embalagem">Embalagem</option>
-            <option value="armazenamento">Armazenamento</option>
-            <option value="distribuicao">Distribuição</option>
-        </select>
-
-        <select onchange="teste()" id="select_esteira">
-            <option value="0" disabled selected>Esteira:</option>
-            <option value="1">Esteira 1</option>
-            <option id="optEsteira2" value="2">Esteira 2</option>
-            <option value="3">Esteira 3</option>
-            <option value="4">Esteira 4</option>
-            <option value="5">Esteira 5</option>
-            <option id="optEsteira6" value="6">Esteira 6</option>
-            <option value="7">Esteira 7</option>
-            <option value="8">Esteira 8</option>
-            <option value="9">Esteira 9</option>
-            <option value="10">Esteira 10</option>
-        </select>
-
-
-        <select onchange="teste()" id="select_sensor">
-            <option value="0" disabled selected>Sensor:</option>
-            <option id="optSensor1" value="A24">A24</option>
-            <option id="optSensor2" value="H34">H34</option>
-            <option id="optSensor3" value="C04">C04</option>
-            <option id="optSensor4" value="X94">X94</option>
-        </select>
-
-        <select onchange="teste()" id="select_dia">
-            <option value="0" disabled selected>Dia:</option>
-            <option id="optSensor1" value="A24">06/05/2025</option>
-            <option id="optSensor2" value="H34">07/05/2025</option>
-            <option id="optSensor3" value="C04">08/05/2025</option>
-            <option id="optSensor4" value="X94">09/05/2025</option>
-        </select>
-    </div>
 
 
     <main>
 
+        <div id="filtros">
 
-        <div class="topCards">
-            <div class="card">
-                <img src="../IMG/alerta.png" alt="">
-                <div class="info">
-                    <p id="KPI1_paragrafo">Número de alertas do sensor</p>
-                    <h3 id="KPI1_h3"></h3>
-                </div>
+            <h1 id="tituloFiltro">Filtros</h1>
+
+            <div class="filtroSelect">
+                <h2 class="tituloSelect">Setor</h2>
+                <select onchange="teste()" id="select_setor">
+                    <option value="0" disabled selected>Setor:</option>
+                    <option value="selecao">Seleção</option>
+                    <option value="higienizacao">Higienização</option>
+                    <option value="processamento">Processamento</option>
+                    <option value="embalagem">Embalagem</option>
+                    <option value="armazenamento">Armazenamento</option>
+                    <option value="distribuicao">Distribuição</option>
+                </select>
             </div>
-            <div class="card">
-                <img src="../IMG/setor.png" alt="">
-                <div class="info">
-                    <p id="KPI2_paragrafo">Setor com o maior número de alertas</p>
-                    <h3 id="KPI2_h3">Processamento</h3>
-                </div>
+
+            <div class="filtroSelect">
+                <h2 class="tituloSelect">Esteira</h2>
+                <select onchange="teste()" id="select_esteira">
+                    <option value="0" disabled selected>Esteira:</option>
+                    <option value="1">Esteira 1</option>
+                    <option id="optEsteira2" value="2">Esteira 2</option>
+                    <option value="3">Esteira 3</option>
+                    <option value="4">Esteira 4</option>
+                    <option value="5">Esteira 5</option>
+                    <option id="optEsteira6" value="6">Esteira 6</option>
+                    <option value="7">Esteira 7</option>
+                    <option value="8">Esteira 8</option>
+                    <option value="9">Esteira 9</option>
+                    <option value="10">Esteira 10</option>
+                </select>
             </div>
-            <div class="card">
-                <img src="../IMG/kpi3.png" alt="">
-                <div class="info">
-                    <p id="KPI3_paragrafo">Maior número de alertas no sensor</p>
-                    <h3 id="KPI3_h3"></h3>
-                </div>
+            <div class="filtroSelect">
+                <h2 class="tituloSelect">Data</h2>
+                <select onchange="teste()" id="select_dia">
+                    <option value="0" disabled selected>Dia:</option>
+                    <option id="optSensor1" value="A24">06/05/2025</option>
+                    <option id="optSensor2" value="H34">07/05/2025</option>
+                    <option id="optSensor3" value="C04">08/05/2025</option>
+                    <option id="optSensor4" value="X94">09/05/2025</option>
+                </select>
             </div>
+
+
         </div>
 
-        <div id="container">
+        <div id="dashboard">
 
-            <div id="divGrafico">
-                <div class="container">
-                    <h2 id="tituloSensorIndi">Selecione Sensor</h2>
-                    <canvas id="individual"></canvas>
+            <div class="topCards">
+                <div class="card">
+                    <img src="../IMG/alerta.png" alt="">
+                    <div class="info">
+                        <p id="KPI1_paragrafo">KPI</p>
+                    </div>
+                </div>
+                <div>
+
+
+                    <h2 id="tituloSensor">Sensor</h2>
+                    <select onchange="teste()" id="select_sensor">
+                        <option value="0" disabled selected>Sensor:</option>
+                        <option id="optSensor1" value="A24">A24</option>
+                        <option id="optSensor2" value="H34">H34</option>
+                        <option id="optSensor3" value="C04">C04</option>
+                        <option id="optSensor4" value="X94">X94</option>
+                    </select>
+
+                </div>
+                <div class="card">
+                    <img src="../IMG/setor.png" alt="">
+                    <div class="info">
+                        <p id="KPI2_paragrafo">KPI</p>
+                    </div>
                 </div>
             </div>
-            <div id="divGrafico">
-                <div class="container">
-                    <h2>Monitoramento por setor - 25/04/2025</h2>
-                    <canvas id="alertas"></canvas>
+
+            <div id="container">
+
+                <div class="divGrafico" id="grafico1">
+                    <div class="container">
+                        <h2 id="tituloSensorIndi">Selecione Sensor</h2>
+                        <canvas height="115vh" id="individual" class="grafico"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div id="divGrafico">
-                <div class="container">
-                    <h2 id="textoGraficoPorMinuto">Selecione Um Setor</h2>
-                    <canvas id="monitoramentoPorMinuto"></canvas>
+                <div class="divGrafico" id="grafico2">
+                    <div class="container">
+                        <h2>Monitoramento por setor - 25/04/2025</h2>
+                        <canvas height="115vh" id="alertas" class="grafico"></canvas>
+                    </div>
+                </div>
+                <div class="divGrafico" id="grafico3">
+                    <div class="container">
+                        <h2 id="textoGraficoPorMinuto">Selecione Um Setor</h2>
+                        <canvas height="58vh" id="monitoramentoPorMinuto" class="grafico"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -403,7 +414,6 @@
             tituloSensorIndi.innerHTML = `Monitoramento do Sensor ${sensor} por minuto`
             KPI1_h3.innerHTML = `4`
         }
-
         if (sensor == 'B24') {
             individual.destroy();
             individual = new Chart(document.getElementById('individual'), {
@@ -538,7 +548,6 @@
             KPI1_h3.innerHTML = `2`
         }
     }
-
     individual = new Chart(document.getElementById('individual'), {
         type: 'line',
         data: {
@@ -567,8 +576,6 @@
             }
         }
     });
-
-
     const alertas = new Chart(document.getElementById('alertas'), {
         type: 'bar',
         data: {
@@ -640,7 +647,6 @@
                     'rgba(75, 192, 192)'
                 ],
             }
-
             ]
         },
         options: {

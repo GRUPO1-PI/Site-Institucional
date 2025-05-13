@@ -1,60 +1,137 @@
-function validar(){
-    var nome = iptNome.value;
+function validarRazaoSocial() {
+
+    var razaoSocial = iptRazaoSocial.value;
+    legendaRazaoSocial.innerHTML = '';
+
+    if (razaoSocial.length >= 1) {
+        iptRazaoSocial.style.borderColor = '#36b0c9';
+    }
+
+}
+
+function validarRazaoSocialErrado() {
+
+    var validarRazaoSocial = iptRazaoSocial.value;
+
+    if (validarRazaoSocial.length < 1) {
+        iptRazaoSocial.style.borderColor = '#ff0000'
+        legendaRazaoSocial.innerHTML = 'Esse campo é obrigatório!'
+    }
+}
+
+function validarEmailCorreto() {
+
     var email = iptEmail.value;
+    legendaEmail.innerHTML = ''
+
+    if (email.includes('@') && email.includes('.')) {
+        iptEmail.style.borderColor = '#36b0c9';
+    }
+}
+
+function validarEmailErrado() {
+
+    var email = iptEmail.value;
+
+    if ((email.includes('@') != true) || (email.includes('.') != true)) {
+        legendaEmail.innerHTML = 'Insira um endereço de email válido!'
+        iptEmail.style.borderColor = '#ff0000';
+    }
+
+    if (email.length < 1) {
+        iptEmail.style.borderColor = '#ff0000'
+        legendaEmail.innerHTML = 'Esse campo é obrigatório!'
+    }
+}
+
+function validarSenhaCorreto() {
     var senha = iptSenha.value;
-    var tel = iptTelefone.value;
-    var cnpj = iptCnpj.value;
+    var especial = ',.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
 
-    var valido = true;
+    var caractereEspecial = false;
+    var minCaractere = false;
+    var mai = false;
+    var min = false;
 
-    // Verificação de Email
-    if (email.includes('@') && email.endsWith('.com')){
-        iptEmail.style.borderColor = '#00FF00'
-    }else {
-        iptEmail.style.borderColor = '#FF0000'  
-        alert(`Formatação de e-mail inválida!`) 
-        valido = false;         
+    legendaSenha.innerHTML = '';
+
+    // Caractere Especial
+    for (var i = 0; i < senha.length; i++) {
+
+        var caractereAtual = senha[i];
+        for (var j = 0; j < especial.length; j++) {
+            if (caractereAtual == especial[j]) {
+                caractereEspecial = true;
+            }
+        }
+
     }
 
+    if (caractereEspecial == false) {
+    } else {
 
-    // Verificação de Senha
-    if (senha.toUpperCase() == senha){
-        // Não tem minúscula
-        alert(`A senha deve conter pelo menos um caractere em minúsculo.`)
-        valido = false;
-    }
-    if (senha.toLowerCase() == senha){
-        // Não tem maiúscula
-        alert(`A senha deve conter pelo menos um caractere em maiúsculo.`)
-        valido = false;
-    }
-    if ((!senha.includes('.')) && (!senha.includes(',')) && (!senha.includes('!')) && (!senha.includes('?')) && (!senha.includes(';')) && (!senha.includes(':')) && (!senha.includes('#')) &&  (!senha.includes('@')) && (!senha.includes('%')) && (!senha.includes('$')) && (!senha.includes('&')) && (!senha.includes('*'))){
-        // Não tem caractere especial
-        alert(`A senha deve conter pelo menos um caractere especial.`)
-        valido = false;
     }
 
-    if (senha.length < 8){
-        alert(`A senha deve conter no mínimo 8 caracteres.`)
-        valido = false;
+    // Mínimo de 8 Caracteres
+    if (senha.length >= 8) {
+        minCaractere = true;
     }
 
-
-    // Verficação de Telefone
-    if (tel.length < 11){
-        // Número está menor que 11
-        alert(`Número de telefone inválido.`)
-        valido = false;
+    // Verificar Maiúscula e Minúscula
+    if (senha.toUpperCase() != senha) {
+        min = true;
+    }
+    if (senha.toLowerCase() != senha) {
+        mai = true;
     }
 
-    if(cnpj.length < 14){
-        alert(`Formatação de CNPJ inválida!`)
-        valido = false;
+    // Trocar cor da borda
+    if ((min == true) && (mai == true) && (caractereEspecial == true) && (minCaractere == true)) {
+        iptSenha.style.borderColor = "#36b0c9";
     }
 
-    if (valido){
-        window.location.href = './cadastro2.html'
+    return [min, mai, caractereEspecial, minCaractere];
+}
+
+function validarSenhaErrado() {
+    var incorreta = validarSenhaCorreto();
+    if ((incorreta[0] != true) || (incorreta[1] != true) || (incorreta[2] != true) || (incorreta[3] != true)) {
+        iptSenha.style.borderColor = "#ff0000"
     }
 
+    if (incorreta[0] != true) {
+        legendaSenha.innerHTML = 'Crie uma senha com pelo menos uma letra minúscula';
+    }
+    if (incorreta[1] != true) {
+        legendaSenha.innerHTML = 'Crie uma senha com pelo menos uma letra maiúscula';
+    }
+    if (incorreta[2] != true) {
+        legendaSenha.innerHTML = 'Crie uma senha com pelo menos um caractere especial. ex(. , / $)';
+    }
+    if (incorreta[3] != true) {
+        legendaSenha.innerHTML = 'Crie uma senha com pelo menos 8 caracteres';
+    }
 
+}
+
+function validarConfirmarSenhaCorreto() {
+
+    var confirmar = iptConfirmarSenha.value;
+    var senha = iptSenha.value;
+    legendaConfirmarSenha.innerHTML = '';
+
+    if (senha == confirmar) {
+        iptConfirmarSenha.style.borderColor = "#36b0c9"
+    }
+}
+
+function validarConfirmarSenhaErrado() {
+
+    var confirmar = iptConfirmarSenha.value;
+    var senha = iptSenha.value;
+
+    if ((senha != confirmar) || (confirmar.length < 1)) {
+        iptConfirmarSenha.style.borderColor = "#ff0000"
+        legendaConfirmarSenha.innerHTML = 'As senhas não conferem!';
+    }
 }
