@@ -162,7 +162,6 @@ header .container {
   display: flex;
   flex-direction: column;
   text-align: left;
-
 }
 
 .inputs h4 {
@@ -195,7 +194,7 @@ header .container {
 }
 
 .crie .arrumar{
-  padding-top: 50px;
+  padding-top: 15px;
   display: flex;
   justify-content: center;
 }

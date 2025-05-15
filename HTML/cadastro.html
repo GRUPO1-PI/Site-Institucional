@@ -18,7 +18,7 @@
             </div>
             <ul class="navbar">
                 <li>
-                    <a href="../index.html">Home</a>
+                    <a href="./index.html">Home</a>
                 </li>
                 <li>
                     <a href="./calculadoraFinanceira.html">Simulador</a>
@@ -53,8 +53,7 @@
                 <div class="inputs">
                     <h2>Crie uma conta:</h2>
                     <h4>Razão Social:</h4>
-                    <input type="text" id="iptRazaoSocial" oninput="validarRazaoSocial()"
-                        onblur="validarRazaoSocialErrado()">
+                    <input type="text" id="iptRazaoSocial" oninput="valdiarRazaoSocialCorreto()" onblur="validarRazaoSocialErrado()">
                     <p id="legendaRazaoSocial" class="legenda"></p>
                     <h4>E-mail:</h4>
                     <input type="email" id="iptEmail" oninput="validarEmailCorreto()" onblur="validarEmailErrado()">
@@ -63,24 +62,29 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone de Suporte:</h4>
-                            <input type="text" id="iptTelefone" maxlength="11">
+                            <input type="text" id="iptTelefoneSuporte" maxlength="11" oninput="validarTelefoneSuporteCorreto()" onblur="validarTelefoneSuporteErrado()">
+                            <p id="legendaTelefoneSuporte" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CNPJ:</h4>
-                            <input type="text" id="iptCnpj" maxlength="14">
+                            <input type="text" id="iptCnpj" maxlength="14" oninput="validarCnpjCorreto()" onblur="validarCnpjErrado()">
+                            <p id="legendaCnpj" class="legenda"></p>
                         </div>
                     </div>
                     <div></div>
-                    <h4>Nome Representante:</h4>
-                    <input type="password" id="iptRepresentante">
+                    <h4>Nome do Representante:</h4>
+                    <input type="text" id="iptRepresentante" oninput="validarNomeRepresentanteCorreto()" onblur="validarNomeRepresentanteErrado()">
+                    <p id="legendaRepresentante" class="legenda"></p>
                     <div class="mesmo">
                         <div class="campo">
-                            <h4>Telefone:</h4>
-                            <input type="password" id="iptCelular">
+                            <h4>Telefone do Representante:</h4>
+                            <input type="text" id="iptTelefoneRepresentante"oninput="validarTelefoneRepresentanteCorreto()" onblur="validarTelefoneRepresentanteErrado()">
+                            <p id="legendaTelefoneRepresentante" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CPF:</h4>
-                            <input type="password" id="iptCpf">
+                            <input type="text" id="iptCpf" maxlength="11" oninput="validarCpfCorreto()" onblur="validarCpfErrado()">
+                            <p id="legendaCpf" class="legenda"></p>
                         </div>
                     </div>
                     <h4>Senha:</h4>
