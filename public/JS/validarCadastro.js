@@ -1,3 +1,13 @@
+// var credenciais = ['', '', '', ''];
+
+// var razaoSocial = '';
+// var email = '';
+// var telefoneSuporte = '';
+// var cnpj = '';
+// var representante = '';
+// var telefoneRepresentante = '';
+// var senhaVar = '';
+
 function validarRazaoSocialCorreto() {
 
     var razaoSocial = iptRazaoSocial.value;
@@ -21,8 +31,7 @@ function validarRazaoSocialErrado() {
 
 function validarEmailCorreto() {
 
-    var email = iptEmail.value;
-    legendaEmail.innerHTML = ''
+    legendaEmail.innerHTML = '';
 
     if (email.includes('@') && email.includes('.')) {
         iptEmail.style.borderColor = '#36b0c9';
@@ -44,7 +53,7 @@ function validarEmailErrado() {
     }
 }
 
-function validarSenhaCorreto() {
+function validarSenhaCorreta() {
     var senha = iptSenha.value;
     var especial = ',.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
 
@@ -116,7 +125,7 @@ function validarSenhaErrado() {
 
 function validarCnpjCorreto() {
 
-    var cnpj = iptCpf.value;
+    var cnpj = iptCnpj.value;
     var especial = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
 
     var caractereEspecial = false;
@@ -347,3 +356,17 @@ function validarTelefoneRepresentanteErrado() {
     }
 
 }
+
+function validar() {
+
+    // credenciais.push(razaoSocial, email, telefoneSuporte, cnpj, representante, senha);
+    // credenciais.push(email);
+    // credenciais.push(telefoneSuporte);
+    // credenciais.push(cnpj);
+    // credenciais.push(representante);
+    // credenciais.push(senha);
+
+    window.location = 'cadastro2.html';
+
+}
+

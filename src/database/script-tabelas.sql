@@ -1,62 +1,76 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+-- Arquivo de apoio para ter o banco de dados oficial
 
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
+CREATE DATABASE sonicorp;
+use sonicorp;
 
 CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+    idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
+    razaoSocial VARCHAR(100) NOT NULL,
+    cnpj CHAR(14) NOT NULL,
+    telefone VARCHAR(15) not null,
+    dataCadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE endereco (
+    idEndereco INT AUTO_INCREMENT PRIMARY KEY,
+    idEmpresa INT NOT NULL UNIQUE,
+    logradouro VARCHAR(100) not null,
+    numero INT not null,
+    complemento VARCHAR(40), 
+    cidade VARCHAR(100) not null,
+    UF CHAR(2) not null,
+    cep CHAR(8) not null,
+    FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+
+CREATE TABLE representante (
+    idRepresentante INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    cpf CHAR(11) not null,
+    telefone VARCHAR(15) not null,
+    email VARCHAR(45) unique not null,
+    senha VARCHAR(45) not null,
+    idEmpresa INT,
+    FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+
+CREATE TABLE setor (
+    idSetor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+		constraint chknome check (nome in ('Seleção de matéria prima','Higienização','Processamento','Embalagem','Armazenamento','Distribuição'))
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE esteira (
+    idEsteira INT PRIMARY KEY AUTO_INCREMENT,
+    idSetor INT, -- verificar a necessidade de uma coluna metragem.
+    FOREIGN KEY (idSetor) REFERENCES setor(idSetor)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+
+
+CREATE TABLE sensor (
+    idSensor INT PRIMARY KEY auto_increment,
+    numSerie CHAR(3),
+    dtInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fkEsteira INT,
+    CONSTRAINT fkSensor_Esteira
+    FOREIGN KEY (fkEsteira)
+    REFERENCES esteira(idEsteira),
+    fkEmpresa INT, -- Verificar se é necessário pkComposta.
+    CONSTRAINT fkSensor_empresa
+    FOREIGN KEY (fkEmpresa)
+    REFERENCES empresa(idEmpresa)
+);
+
+
+CREATE TABLE monitoramento (
+    idMonitoramento INT AUTO_INCREMENT PRIMARY KEY,
+    fkSensor INT,
+    produtoDetectado BOOLEAN, -- Perguntar para a Vivian
+    dtMonitoramento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fkSensorMonit FOREIGN KEY (fkSensor)
+        REFERENCES sensor(idSensor)
+);

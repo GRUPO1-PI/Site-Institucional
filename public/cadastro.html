@@ -7,6 +7,8 @@
     <title>Sonicorp - Cadastro</title>
     <link rel="stylesheet" href="../CSS/paginaCadastro.css">
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
+        <script src="../JS/validarCadastro.js"></script>
+
 </head>
 
 <body>
@@ -53,7 +55,8 @@
                 <div class="inputs">
                     <h2>Crie uma conta:</h2>
                     <h4>Razão Social:</h4>
-                    <input type="text" id="iptRazaoSocial" oninput="valdiarRazaoSocialCorreto()" onblur="validarRazaoSocialErrado()">
+                    <input type="text" id="iptRazaoSocial" oninput="validarRazaoSocialCorreto()"
+                        onblur="validarRazaoSocialErrado()">
                     <p id="legendaRazaoSocial" class="legenda"></p>
                     <h4>E-mail:</h4>
                     <input type="email" id="iptEmail" oninput="validarEmailCorreto()" onblur="validarEmailErrado()">
@@ -62,33 +65,39 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone de Suporte:</h4>
-                            <input type="text" id="iptTelefoneSuporte" maxlength="11" oninput="validarTelefoneSuporteCorreto()" onblur="validarTelefoneSuporteErrado()">
+                            <input type="text" id="iptTelefoneSuporte" maxlength="11"
+                                oninput="validarTelefoneSuporteCorreto()" onblur="validarTelefoneSuporteErrado()">
                             <p id="legendaTelefoneSuporte" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CNPJ:</h4>
-                            <input type="text" id="iptCnpj" maxlength="14" oninput="validarCnpjCorreto()" onblur="validarCnpjErrado()">
+                            <input type="text" id="iptCnpj" maxlength="14" oninput="validarCnpjCorreto()"
+                                onblur="validarCnpjErrado()">
                             <p id="legendaCnpj" class="legenda"></p>
                         </div>
                     </div>
                     <div></div>
                     <h4>Nome do Representante:</h4>
-                    <input type="text" id="iptRepresentante" oninput="validarNomeRepresentanteCorreto()" onblur="validarNomeRepresentanteErrado()">
+                    <input type="text" id="iptRepresentante" oninput="validarNomeRepresentanteCorreto()"
+                        onblur="validarNomeRepresentanteErrado()">
                     <p id="legendaRepresentante" class="legenda"></p>
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone do Representante:</h4>
-                            <input type="text" id="iptTelefoneRepresentante"oninput="validarTelefoneRepresentanteCorreto()" onblur="validarTelefoneRepresentanteErrado()">
+                            <input type="text" id="iptTelefoneRepresentante"
+                                oninput="validarTelefoneRepresentanteCorreto()"
+                                onblur="validarTelefoneRepresentanteErrado()">
                             <p id="legendaTelefoneRepresentante" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CPF:</h4>
-                            <input type="text" id="iptCpf" maxlength="11" oninput="validarCpfCorreto()" onblur="validarCpfErrado()">
+                            <input type="text" id="iptCpf" maxlength="11" oninput="validarCpfCorreto()"
+                                onblur="validarCpfErrado()">
                             <p id="legendaCpf" class="legenda"></p>
                         </div>
                     </div>
                     <h4>Senha:</h4>
-                    <input type="password" id="iptSenha" oninput="valdiarSenhaCorreta()" onblur="validarSenhaErrado()">
+                    <input type="password" id="iptSenha" oninput="validarSenhaCorreta()" onblur="validarSenhaErrado()">
                     <p id="legendaSenha" class="legenda"></p>
                     <div class="arrumar">
                         <button onclick="validar()">Próximo ➔</button>
@@ -99,6 +108,89 @@
 
         </div>
     </div>
+
+    <div class="formulario">
+        <div class="container">
+            <div class="crie">
+                <div class="inputs">
+                    <h2>Crie uma conta:</h2>
+
+                    <div class="mesmo">
+                        <div class="campo">
+                            <h4>Unidade Federativa:</h4>
+                            <select name="uf" id="select_uf">
+                                <option disabled selected>Selecione:</option>
+                                <option value="">AC</option>
+                                <option value="">AL</option>
+                                <option value="">AP</option>
+                                <option value="">AM</option>
+                                <option value="">BA</option>
+                                <option value="">CE</option>
+                                <option value="">DF</option>
+                                <option value="">ES</option>
+                                <option value="">GO</option>
+                                <option value="">MA</option>
+                                <option value="">MT</option>
+                                <option value="">MS</option>
+                                <option value="">MG</option>
+                                <option value="">PA</option>
+                                <option value="">PB</option>
+                                <option value="">PR</option>
+                                <option value="">PE</option>
+                                <option value="">PI</option>
+                                <option value="">RJ</option>
+                                <option value="">RN</option>
+                                <option value="">RS</option>
+                                <option value="">RO</option>
+                                <option value="">RR</option>
+                                <option value="">SC</option>
+                                <option value="">SP</option>
+                                <option value="">SE</option>
+                                <option value="">TO</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <h4>Cidade:</h4>
+                            <input type="text" id="input_cidade">
+                        </div>
+                    </div>
+
+                    <div class="mesmo">
+                        <div class="campo">
+                            <h4>Bairro:</h4>
+                            <input type="text" id="input_bairro">
+                        </div>
+                        <div class="campo">
+                            <h4>CEP:</h4>
+                            <input type="text" id="input_cep" maxlength="8">
+                        </div>
+                    </div>
+
+                    <div class="mesmo">
+                        <div class="campo">
+                            <h4>Logradouro:</h4>
+                            <input type="text" id="input_endereco">
+                        </div>
+                        <div class="campo">
+                            <h4>Número:</h4>
+                            <input type="number" id="input_numero">
+                        </div>
+                    </div>
+
+                    <div class="complemento">
+                        <h4>Complemento:</h4>
+                        <input type="text" id="input_complemento" placeholder="(Opcional)">
+                    </div>
+
+                    <div class="arrumar">
+                        <button onclick="validar()">Cadastre-se</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
 
@@ -144,7 +236,6 @@
 
     </footer>
 
-    <script src="../JS/validarCadastro.js"></script>
 
 </body>
 
