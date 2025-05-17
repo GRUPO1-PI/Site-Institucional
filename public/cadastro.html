@@ -7,11 +7,11 @@
     <title>Sonicorp - Cadastro</title>
     <link rel="stylesheet" href="../CSS/paginaCadastro.css">
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
-        <script src="../JS/validarCadastro.js"></script>
+    <script src="../JS/validarCadastro.js"></script>
 
 </head>
 
-<body>
+<body onload="esconder()">
     <header>
 
         <div class="container">
@@ -40,7 +40,7 @@
 
     </header>
 
-    <div class="formulario">
+    <div class="formulario" id="cadastro1">
         <div class="container">
             <div class="simConta">
                 <h2>Já tem uma conta?</h2>
@@ -84,7 +84,7 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone do Representante:</h4>
-                            <input type="text" id="iptTelefoneRepresentante"
+                            <input type="text" id="iptTelefoneRepresentante" maxlength="11"
                                 oninput="validarTelefoneRepresentanteCorreto()"
                                 onblur="validarTelefoneRepresentanteErrado()">
                             <p id="legendaTelefoneRepresentante" class="legenda"></p>
@@ -100,7 +100,7 @@
                     <input type="password" id="iptSenha" oninput="validarSenhaCorreta()" onblur="validarSenhaErrado()">
                     <p id="legendaSenha" class="legenda"></p>
                     <div class="arrumar">
-                        <button onclick="validar()">Próximo ➔</button>
+                        <button onclick="avançar()">Próximo ➔</button>
                     </div>
                 </div>
 
@@ -109,9 +109,9 @@
         </div>
     </div>
 
-    <div class="formulario">
-        <div class="container">
-            <div class="crie">
+    <div class="formulario2" id="cadastro2">
+        <div class="container2">
+            <div class="crie2">
                 <div class="inputs">
                     <h2>Crie uma conta:</h2>
 
@@ -181,9 +181,11 @@
                         <h4>Complemento:</h4>
                         <input type="text" id="input_complemento" placeholder="(Opcional)">
                     </div>
-
+                </div>
+                <div class="alinhar">
                     <div class="arrumar">
-                        <button onclick="validar()">Cadastre-se</button>
+                        <button class="botao" id="botao1" onclick="voltar()">Voltar</button>
+                        <button class="botao" id="botao2" onclick="validar()">Cadastre-se</button>
                     </div>
                 </div>
 

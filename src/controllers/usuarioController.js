@@ -44,28 +44,36 @@ function autenticar(req, res) {
 
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
+
+
+    var razaoSocial = req.body.razaoSocialServer;
     var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var cpf = req.body.cpfServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var telefoneSuporte = req.body.telefoneSuporteServer;
+    var cnpj = req.body.cnpjServer;
+    var representante = req.body.representanteServer;
+    var telefoneRepresentante = req.body.telefoneRepresentanteServer;
+    var cep = req.body.cepServer;
+
 
     // Faça as validações dos valores
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+    if (razaoSocial == undefined) {
+        res.status(400).send("Sua razão social está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu CPF está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (telefoneSuporte == undefined) {
+        res.status(400).send("Seu telefone de suporte está undefined!");
+    } else if (cnpj == undefined) {
+        res.status(400).send("Seu CNPJ está undefined!");
+    } else if (representante == undefined) {
+        res.status(400).send("Seu represententa está undefined!");
+    } else if (telefoneRepresentante == undefined) {
+        res.status(400).send("Seu telefone de represententa está undefined!");
+    } else if (cep == undefined) {
+        res.status(400).send("Seu CEP está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cpf, fkEmpresa)
+        usuarioModel.cadastrar(razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cep)
             .then(
                 function (resultado) {
                     res.json(resultado);
