@@ -118,62 +118,69 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Unidade Federativa:</h4>
-                            <select name="uf" id="select_uf">
+                            <select name="uf" id="select_uf" onchange="validarUnidadeFederativa()">
                                 <option disabled selected>Selecione:</option>
-                                <option value="">AC</option>
-                                <option value="">AL</option>
-                                <option value="">AP</option>
-                                <option value="">AM</option>
-                                <option value="">BA</option>
-                                <option value="">CE</option>
-                                <option value="">DF</option>
-                                <option value="">ES</option>
-                                <option value="">GO</option>
-                                <option value="">MA</option>
-                                <option value="">MT</option>
-                                <option value="">MS</option>
-                                <option value="">MG</option>
-                                <option value="">PA</option>
-                                <option value="">PB</option>
-                                <option value="">PR</option>
-                                <option value="">PE</option>
-                                <option value="">PI</option>
-                                <option value="">RJ</option>
-                                <option value="">RN</option>
-                                <option value="">RS</option>
-                                <option value="">RO</option>
-                                <option value="">RR</option>
-                                <option value="">SC</option>
-                                <option value="">SP</option>
-                                <option value="">SE</option>
-                                <option value="">TO</option>
+                                <option value="AC">Acre (AC)</option>
+                                <option value="AL">Alagoas (AL)</option>
+                                <option value="AP">Amapá (AP)</option>
+                                <option value="AM">Amazonas (AM)</option>
+                                <option value="BA">Bahia (BA)</option>
+                                <option value="CE">Ceará (CE)</option>
+                                <option value="DF">Distrito Federal (DF)</option>
+                                <option value="ES">Espírito Santo (ES)</option>
+                                <option value="GO">Goiás (GO)</option>
+                                <option value="MA">Maranhão (MA)</option>
+                                <option value="MT">Mato Grosso (MT)</option>
+                                <option value="MS">Mato Grosso do Sul (MS)</option>
+                                <option value="MG">Minas Gerais (MG)</option>
+                                <option value="PA">Pará (PA)</option>
+                                <option value="PB">Paraíba (PB)</option>
+                                <option value="PR">Paraná (PR)</option>
+                                <option value="PE">Pernambuco (PE)</option>
+                                <option value="PI">Piauí (PI)</option>
+                                <option value="RJ">Rio de Janeiro (RJ)</option>
+                                <option value="RN">Rio Grande do Norte (RN)</option>
+                                <option value="RS">Rio Grande do Sul (RS)</option>
+                                <option value="RO">Rondônia (RO)</option>
+                                <option value="RR">Roraima (RR)</option>
+                                <option value="SC">Santa Catarina (SC)</option>
+                                <option value="SP">São Paulo (SP)</option>
+                                <option value="SE">Sergipe (SE)</option>
+                                <option value="TO">Tocantins (TO)</option>
                             </select>
                         </div>
                         <div class="campo">
                             <h4>Cidade:</h4>
-                            <input type="text" id="input_cidade">
+                            <input type="text" id="input_cidade" oninput="validarCidadeCorreta()"
+                                onblur="validarCidadeErrada()">
+                            <p id="legendaCidade" class="legenda"></p>
                         </div>
                     </div>
 
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Bairro:</h4>
-                            <input type="text" id="input_bairro">
+                            <input type="text" id="input_bairro" oninput="validarBairroCorreto()"
+                                onblur="validarBairroErrado()">
+                            <p id="legendaBairro" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CEP:</h4>
-                            <input type="text" id="input_cep" maxlength="8">
+                            <input type="text" id="input_cep" maxlength="8" oninput="validarCepCorreto()" onblur="validarCepErrado()">
+                            <p id="legendaCep" class="legenda"></p>
                         </div>
                     </div>
 
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Logradouro:</h4>
-                            <input type="text" id="input_endereco">
+                            <input type="text" id="input_logradouro" oninput="validarLogradouroCorreto()" onblur="validarLogradouroErrado()">
+                            <p id="legendaLogradouro" class="legenda"></p>
                         </div>
                         <div class="campo">
-                            <h4>Número:</h4>
-                            <input type="number" id="input_numero">
+                            <h4>Número</h4>
+                            <input type="text" id="input_numero" oninput="validarNumCorreto()" onblur="validarNumErrado()">
+                            <p id="legendaNum" class="legenda"></p>
                         </div>
                     </div>
 

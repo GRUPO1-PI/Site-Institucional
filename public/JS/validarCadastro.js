@@ -1,4 +1,7 @@
-var credenciais = [false, false, false, false, false, false, false, false];
+var credenciais = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+
+var especial = ',.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
+var especialLetras = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
 
 var razaoSocial = '';
 var email = '';
@@ -8,6 +11,13 @@ var representante = '';
 var telefoneRepresentante = '';
 var cpf = '';
 var senha = '';
+
+var unidadeFederativa = '';
+var cidade = '';
+var bairro = '';
+var cep = '';
+var logradouro = '';
+var num = '';
 
 function validarRazaoSocialCorreto() {
 
@@ -383,6 +393,143 @@ function validarTelefoneRepresentanteErrado() {
 
 }
 
+// Validar Unidade Federativa
+function validarUnidadeFederativa() {
+
+    unidadeFederativa = select_uf.value;
+    if (unidadeFederativa != '') {
+        select_uf.style.borderColor = "#36b0c9";
+        credenciais[8] = true;
+    } else {
+        credenciais[8] = false;
+    }
+
+}
+
+// Validar cidade
+function validarCidadeCorreta() {
+
+    cidade = input_cidade.value;
+    if (cidade != '') {
+        input_cidade.style.borderColor = "#36b0c9"
+        legendaCidade.innerHTML = ''
+        credenciais[9] = true;
+    }
+
+}
+function validarCidadeErrada() {
+
+    if (cidade == '') {
+        input_cidade.style.borderColor = "#ff0000";
+        legendaCidade.innerHTML = 'Esse campo é obrigatório!';
+        credenciais[9] = false;
+    }
+
+}
+
+// Validar Bairro
+function validarBairroCorreto() {
+
+    bairro = input_bairro.value;
+    if (bairro != '') {
+        input_bairro.style.borderColor = "#36b0c9"
+        legendaBairro.innerHTML = ''
+        credenciais[10] = true;
+    }
+
+}
+function validarBairroErrado() {
+
+    if (bairro == '') {
+        input_bairro.style.borderColor = "#ff0000";
+        legendaBairro.innerHTML = 'Esse campo é obrigatório!';
+        credenciais[10] = false;
+    }
+
+}
+
+// Validar CEP
+function validarCepCorreto() {
+
+    cep = input_cep.value;
+
+    for (var i = 0; i < especialLetras.length; i++) {
+        for (var j = 0; j < cep.length; j++) {
+            if (cep[j] == especialLetras[i]) {
+                legendaCep.innerHTML = 'Digite apenas números!'
+                input_cep.style.borderColor = '#ff0000'
+                credenciais[11] = false;
+                break;
+            } else {
+                legendaCep.innerHTML = ''
+                input_cep.style.borderColor = '#36b0c9'
+                credenciais[11] = true;
+            }
+        }
+        if (credenciais[11] == false) {
+            break
+        }
+    }
+
+}
+function validarCepErrado() {
+
+    if (cep.length != 8) {
+        legendaCep.innerHTML = 'O CEP deve conter 8 caracteres!'
+        input_cep.style.borderColor = '#ff0000'
+    }
+
+    if (cep == '') {
+        legendaCep.innerHTML = 'Esse campo é obrigatório!'
+        input_cep.style.borderColor = '#ff0000'
+    }
+
+}
+
+// Validar logradouro
+function validarLogradouroCorreto() {
+
+    logradouro = input_logradouro.value;
+
+    if (logradouro != '') {
+        input_logradouro.style.borderColor = "#36b0c9"
+        legendaLogradouro.innerHTML = ''
+        credenciais[12] = true;
+    }
+    
+}
+function validarLogradouroErrado() {
+
+    if (logradouro == '') {
+        input_logradouro.style.borderColor = "#ff0000";
+        legendaLogradouro.innerHTML = 'Esse campo é obrigatório!';
+        credenciais[11] = false;
+    }
+
+}
+
+// Validar número
+function validarNumCorreto() {
+
+    num = input_numero.value;
+
+    if (num != '') {
+        input_numero.style.borderColor = "#36b0c9"
+        legendaNum.innerHTML = ''
+        credenciais[13] = true;
+    }
+    
+}
+function validarNumErrado() {
+
+    if (num == '') {
+        input_numero.style.borderColor = "#ff0000";
+        legendaNum.innerHTML = 'Esse campo é obrigatório!';
+        credenciais[13] = false;
+    }
+
+}
+
 function esconder() {
     document.getElementById('cadastro2').style.display = 'none'
 }
@@ -466,7 +613,14 @@ function validar() {
             representanteServer: representante,
             telefoneRepresentanteServer: telefoneRepresentante,
             cpfServer: cpf,
-            senhaServer: senha
+            senhaServer: senha,
+
+            unidadeFederativaServer: unidadeFederativa,
+            cidadeServer: cidade,
+            bairroServer: bairro,
+            cepServer: cep,
+            logradouroServer: logradouro,
+            numServer: num
 
         }),
     })
