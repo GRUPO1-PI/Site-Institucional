@@ -10,15 +10,17 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cpf, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, server, senha);
-    
+function cadastrar(razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cpf, senha, unidadeFederativa, cidade, bairro, cep, logradouro, num) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cpf, senha, unidadeFederativa, cidade, bairro, cep, logradouro, num);
+
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO representante (nome, cpf, telefone, email, senha, idEmpresa) VALUES ('${razaoSocial}', '${cpf}', '${telefoneRepresentante}', '${email}', '${senha}', 1);    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    var instrucaoSql1 = `INSERT INTO empresa (razaoSocial, cnpj, telefone) VALUES ('${razaoSocial}', '${cnpj}', '${telefoneSuporte}');`
+    var instrucaoSql2 = `INSERT INTO endereco (idEmpresa, logradouro, numero, cidade, UF, cep) VALUES (1, '${logradouro}', '${num}', '${cidade}', '${unidadeFederativa}', '${cep}');`
+    var instrucaoSql3 = `INSERT INTO representante (nome, cpf, telefone, email, senha, idEmpresa) VALUES ('${representante}', '${cpf}', '${telefoneRepresentante}', '${email}', '${senha}', 1);`;
+
+    // Retorna as 3 (cadastrar empresa, representante e endereço) querrys (comandos de BD) para ser executadas
+    return database.executar(instrucaoSql1, instrucaoSql2, instrucaoSql3);
 }
 
 module.exports = {

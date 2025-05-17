@@ -52,28 +52,36 @@ function cadastrar(req, res) {
     var cnpj = req.body.cnpjServer;
     var representante = req.body.representanteServer;
     var telefoneRepresentante = req.body.telefoneRepresentanteServer;
+    var cpf = req.body.cpfServer;
+    var senha = req.body.senhaServer;
+
+    var unidadeFederativa = req.body.unidadeFederativaServer;
+    var cidade = req.body.cidadeServer;
+    var bairro = req.body.bairroServer;
     var cep = req.body.cepServer;
+    var logradouro = req.body.logradouroServer;
+    var num = req.body.numServer;
 
 
     // Faça as validações dos valores
-    if (razaoSocial == undefined) {
-        res.status(400).send("Sua razão social está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (telefoneSuporte == undefined) {
-        res.status(400).send("Seu telefone de suporte está undefined!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Seu CNPJ está undefined!");
-    } else if (representante == undefined) {
-        res.status(400).send("Seu represententa está undefined!");
-    } else if (telefoneRepresentante == undefined) {
-        res.status(400).send("Seu telefone de represententa está undefined!");
-    } else if (cep == undefined) {
-        res.status(400).send("Seu CEP está undefined!");
-    } else {
+    // if (razaoSocial == undefined) {
+    //     res.status(400).send("Sua razão social está undefined!");
+    // } else if (email == undefined) {
+    //     res.status(400).send("Seu email está undefined!");
+    // } else if (telefoneSuporte == undefined) {
+    //     res.status(400).send("Seu telefone de suporte está undefined!");
+    // } else if (cnpj == undefined) {
+    //     res.status(400).send("Seu CNPJ está undefined!");
+    // } else if (representante == undefined) {
+    //     res.status(400).send("Seu represententa está undefined!");
+    // } else if (telefoneRepresentante == undefined) {
+    //     res.status(400).send("Seu telefone de represententa está undefined!");
+    // } else if (cep == undefined) {
+    //     res.status(400).send("Seu CEP está undefined!");
+    // } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cep)
+        usuarioModel.cadastrar(razaoSocial, email, telefoneSuporte, cnpj, representante, telefoneRepresentante, cpf, senha, unidadeFederativa, cidade, bairro, cep, logradouro, num)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -88,7 +96,7 @@ function cadastrar(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             );
-    }
+    // }
 }
 
 module.exports = {

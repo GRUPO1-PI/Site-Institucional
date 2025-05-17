@@ -19,9 +19,10 @@ var cep = '';
 var logradouro = '';
 var num = '';
 
+// Validar razão social
 function validarRazaoSocialCorreto() {
 
-    var razaoSocial = iptRazaoSocial.value;
+    razaoSocial = iptRazaoSocial.value;
     legendaRazaoSocial.innerHTML = '';
 
     credenciais[0] = false;
@@ -32,17 +33,17 @@ function validarRazaoSocialCorreto() {
     }
 
 }
-
 function validarRazaoSocialErrado() {
 
-    var validarRazaoSocial = iptRazaoSocial.value;
+    razaoSocial = iptRazaoSocial.value;
 
-    if (validarRazaoSocial.length < 1) {
+    if (razaoSocial.length < 1) {
         iptRazaoSocial.style.borderColor = '#ff0000'
         legendaRazaoSocial.innerHTML = 'Esse campo é obrigatório!'
     }
 }
 
+// Validar email
 function validarEmailCorreto() {
 
     legendaEmail.innerHTML = '';
@@ -54,7 +55,6 @@ function validarEmailCorreto() {
         credenciais[1] = true;
     }
 }
-
 function validarEmailErrado() {
 
     var email = iptEmail.value;
@@ -70,9 +70,257 @@ function validarEmailErrado() {
     }
 }
 
+// Validar telefone do suporte
+function validarTelefoneSuporteCorreto() {
+
+    telefoneSuporte = iptTelefoneSuporte.value;
+
+    var caractereEspecial = false;
+    var minCaractere = false;
+
+    legendaTelefoneSuporte.innerHTML = '';
+
+    credenciais[6] = false;
+
+    // Caractere Especial
+    for (var i = 0; i < telefoneSuporte.length; i++) {
+
+        var caractereAtual = telefoneSuporte[i];
+        for (var j = 0; j < especial.length; j++) {
+            if (caractereAtual == especial[j]) {
+                caractereEspecial = true;
+            }
+        }
+
+    }
+
+    // Mínimo de 11 Caracteres
+    if (telefoneSuporte.length == 11) {
+        minCaractere = true;
+    }
+
+    // Trocar cor da borda
+    if ((caractereEspecial == false) && (minCaractere == true)) {
+        iptTelefoneSuporte.style.borderColor = "#36b0c9";
+        credenciais[6] = true;
+    }
+
+    return [caractereEspecial, minCaractere];
+
+}
+function validarTelefoneSuporteErrado() {
+
+    var incorreta = validarTelefoneSuporteCorreto();
+    if ((incorreta[0] != false) || (incorreta[1] != true)) {
+        iptTelefoneSuporte.style.borderColor = "#ff0000"
+    }
+
+    if (incorreta[1] == false) {
+        legendaTelefoneSuporte.innerHTML = 'O telefone deve conter 11 caracteres!'
+    }
+
+    if (incorreta[0] == true) {
+        legendaTelefoneSuporte.innerHTML = 'Digite apenas números!'
+    }
+
+}
+
+// Validar CNPJ
+function validarCnpjCorreto() {
+
+    cnpj = iptCnpj.value;
+
+    var caractereEspecial = false;
+    var minCaractere = false;
+
+    credenciais[3] = false;
+
+    legendaCpf.innerHTML = '';
+
+    // Caractere Especial
+    for (var i = 0; i < cnpj.length; i++) {
+
+        var caractereAtual = cnpj[i];
+        for (var j = 0; j < especial.length; j++) {
+            if (caractereAtual == especial[j]) {
+                caractereEspecial = true;
+            }
+        }
+
+    }
+
+    // Mínimo de 14 Caracteres
+    if (cnpj.length == 14) {
+        minCaractere = true;
+    }
+
+    // Trocar cor da borda
+    if ((caractereEspecial == false) && (minCaractere == true)) {
+        iptCnpj.style.borderColor = "#36b0c9";
+        legendaCnpj.innerHTML = ''
+        credenciais[3] = true;
+    }
+
+    return [caractereEspecial, minCaractere];
+
+}
+function validarCnpjErrado() {
+
+    var incorreta = validarCnpjCorreto();
+    if ((incorreta[0] != false) || (incorreta[1] != true)) {
+        iptCnpj.style.borderColor = "#ff0000"
+    }
+
+    if (incorreta[1] == false) {
+        legendaCnpj.innerHTML = 'O CNPJ deve conter 14 caracteres!'
+    }
+
+    if (incorreta[0] == true) {
+        legendaCnpj.innerHTML = 'Digite apenas números!'
+    }
+
+}
+
+// Validar nome do representante
+function validarNomeRepresentanteCorreto() {
+
+    representante = iptRepresentante.value;
+    legendaRepresentante.innerHTML = '';
+
+    credenciais[5] = false;
+
+    if (representante.length >= 1) {
+        iptRepresentante.style.borderColor = '#36b0c9';
+        credenciais[5] = true;
+    }
+
+}
+function validarNomeRepresentanteErrado() {
+
+    var representante = iptRepresentante.value;
+
+    if (representante.length < 1) {
+        iptRepresentante.style.borderColor = '#ff0000'
+        legendaRepresentante.innerHTML = 'Esse campo é obrigatório!'
+    }
+
+}
+
+// Validar telefone do representante
+function validarTelefoneRepresentanteCorreto() {
+
+    telefoneRepresentante = iptTelefoneRepresentante.value;
+
+    var caractereEspecial = false;
+    var minCaractere = false;
+
+    legendaTelefoneRepresentante.innerHTML = '';
+
+    credenciais[7] = false;
+
+    // Caractere Especial
+    for (var i = 0; i < telefoneRepresentante.length; i++) {
+
+        var caractereAtual = telefoneRepresentante[i];
+        for (var j = 0; j < especial.length; j++) {
+            if (caractereAtual == especial[j]) {
+                caractereEspecial = true;
+            }
+        }
+
+    }
+
+    // Mínimo de 11 Caracteres
+    if (telefoneRepresentante.length == 11) {
+        minCaractere = true;
+    }
+
+    // Trocar cor da borda
+    if ((caractereEspecial == false) && (minCaractere == true)) {
+        iptTelefoneRepresentante.style.borderColor = "#36b0c9";
+        credenciais[7] = true;
+    }
+
+    return [caractereEspecial, minCaractere];
+
+}
+
+function validarTelefoneRepresentanteErrado() {
+
+    var incorreta = validarTelefoneRepresentanteCorreto();
+    if ((incorreta[0] != false) || (incorreta[1] != true)) {
+        iptTelefoneRepresentante.style.borderColor = "#ff0000"
+    }
+
+    if (incorreta[1] == false) {
+        legendaTelefoneRepresentante.innerHTML = 'O telefone deve conter 11 caracteres!'
+    }
+
+    if (incorreta[0] == true) {
+        legendaTelefoneRepresentante.innerHTML = 'Digite apenas números!'
+    }
+
+}
+
+// Validar CPF
+function validarCpfCorreto() {
+
+    cpf = iptCpf.value;
+
+    var caractereEspecial = false;
+    var minCaractere = false;
+
+    credenciais[4] = false;
+
+
+    legendaCpf.innerHTML = '';
+
+    // Caractere Especial
+    for (var i = 0; i < cpf.length; i++) {
+
+        var caractereAtual = cpf[i];
+        for (var j = 0; j < especial.length; j++) {
+            if (caractereAtual == especial[j]) {
+                caractereEspecial = true;
+            }
+        }
+
+    }
+
+    // Mínimo de 11 Caracteres
+    if (cpf.length == 11) {
+        minCaractere = true;
+    }
+
+    // Trocar cor da borda
+    if ((caractereEspecial == false) && (minCaractere == true)) {
+        iptCpf.style.borderColor = "#36b0c9";
+        credenciais[4] = true;
+    }
+
+    return [caractereEspecial, minCaractere];
+
+}
+function validarCpfErrado() {
+
+    var incorreta = validarCpfCorreto();
+    if ((incorreta[0] != false) || (incorreta[1] != true)) {
+        iptCpf.style.borderColor = "#ff0000"
+    }
+
+    if (incorreta[1] == false) {
+        legendaCpf.innerHTML = 'O Cpf deve conter 14 caracteres!'
+    }
+
+    if (incorreta[0] == true) {
+        legendaCpf.innerHTML = 'Digite apenas números!'
+    }
+
+}
+
+// Validar senha
 function validarSenhaCorreta() {
-    var senha = iptSenha.value;
-    var especial = ',.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
+    senha = iptSenha.value;
 
     credenciais[2] = false;
 
@@ -139,256 +387,6 @@ function validarSenhaErrado() {
     }
     if (incorreta[3] != true) {
         legendaSenha.innerHTML = 'Crie uma senha com pelo menos 8 caracteres';
-    }
-
-}
-
-function validarCnpjCorreto() {
-
-    var cnpj = iptCnpj.value;
-    var especial = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
-
-    var caractereEspecial = false;
-    var minCaractere = false;
-
-    credenciais[3] = false;
-
-    legendaCpf.innerHTML = '';
-
-    // Caractere Especial
-    for (var i = 0; i < cnpj.length; i++) {
-
-        var caractereAtual = cnpj[i];
-        for (var j = 0; j < especial.length; j++) {
-            if (caractereAtual == especial[j]) {
-                caractereEspecial = true;
-            }
-        }
-
-    }
-
-    // Mínimo de 14 Caracteres
-    if (cnpj.length == 14) {
-        minCaractere = true;
-    }
-
-    // Trocar cor da borda
-    if ((caractereEspecial == false) && (minCaractere == true)) {
-        iptCnpj.style.borderColor = "#36b0c9";
-        credenciais[3] = true;
-    }
-
-    return [caractereEspecial, minCaractere];
-
-}
-
-function validarCnpjErrado() {
-
-    var incorreta = validarCnpjCorreto();
-    if ((incorreta[0] != false) || (incorreta[1] != true)) {
-        iptCnpj.style.borderColor = "#ff0000"
-    }
-
-    if (incorreta[1] == false) {
-        legendaCnpj.innerHTML = 'O CNPJ deve conter 14 caracteres!'
-    }
-
-    if (incorreta[0] == true) {
-        legendaCnpj.innerHTML = 'Digite apenas números!'
-    }
-
-}
-
-function validarCpfCorreto() {
-
-    var cpf = iptCpf.value;
-    var especial = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
-
-    var caractereEspecial = false;
-    var minCaractere = false;
-
-    credenciais[4] = false;
-
-
-    legendaCpf.innerHTML = '';
-
-    // Caractere Especial
-    for (var i = 0; i < cpf.length; i++) {
-
-        var caractereAtual = cpf[i];
-        for (var j = 0; j < especial.length; j++) {
-            if (caractereAtual == especial[j]) {
-                caractereEspecial = true;
-            }
-        }
-
-    }
-
-    // Mínimo de 11 Caracteres
-    if (cpf.length == 11) {
-        minCaractere = true;
-    }
-
-    // Trocar cor da borda
-    if ((caractereEspecial == false) && (minCaractere == true)) {
-        iptCpf.style.borderColor = "#36b0c9";
-        credenciais[4] = true;
-    }
-
-    return [caractereEspecial, minCaractere];
-
-}
-
-function validarCpfErrado() {
-
-    var incorreta = validarCpfCorreto();
-    if ((incorreta[0] != false) || (incorreta[1] != true)) {
-        iptCpf.style.borderColor = "#ff0000"
-    }
-
-    if (incorreta[1] == false) {
-        legendaCpf.innerHTML = 'O Cpf deve conter 14 caracteres!'
-    }
-
-    if (incorreta[0] == true) {
-        legendaCpf.innerHTML = 'Digite apenas números!'
-    }
-
-}
-
-function validarNomeRepresentanteCorreto() {
-
-    var representante = iptRepresentante.value;
-    legendaRepresentante.innerHTML = '';
-
-    credenciais[5] = false;
-
-    if (representante.length >= 1) {
-        iptRepresentante.style.borderColor = '#36b0c9';
-        credenciais[5] = true;
-    }
-
-}
-
-function validarNomeRepresentanteErrado() {
-
-    var representante = iptRepresentante.value;
-
-    if (representante.length < 1) {
-        iptRepresentante.style.borderColor = '#ff0000'
-        legendaRepresentante.innerHTML = 'Esse campo é obrigatório!'
-    }
-
-}
-
-function validarTelefoneSuporteCorreto() {
-
-    var telefoneSuporte = iptTelefoneSuporte.value;
-    var especial = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
-
-    var caractereEspecial = false;
-    var minCaractere = false;
-
-    legendaTelefoneSuporte.innerHTML = '';
-
-    credenciais[6] = false;
-
-    // Caractere Especial
-    for (var i = 0; i < telefoneSuporte.length; i++) {
-
-        var caractereAtual = telefoneSuporte[i];
-        for (var j = 0; j < especial.length; j++) {
-            if (caractereAtual == especial[j]) {
-                caractereEspecial = true;
-            }
-        }
-
-    }
-
-    // Mínimo de 11 Caracteres
-    if (telefoneSuporte.length == 11) {
-        minCaractere = true;
-    }
-
-    // Trocar cor da borda
-    if ((caractereEspecial == false) && (minCaractere == true)) {
-        iptTelefoneSuporte.style.borderColor = "#36b0c9";
-        credenciais[6] = true;
-    }
-
-    return [caractereEspecial, minCaractere];
-
-}
-
-function validarTelefoneSuporteErrado() {
-
-    var incorreta = validarTelefoneSuporteCorreto();
-    if ((incorreta[0] != false) || (incorreta[1] != true)) {
-        iptTelefoneSuporte.style.borderColor = "#ff0000"
-    }
-
-    if (incorreta[1] == false) {
-        legendaTelefoneSuporte.innerHTML = 'O telefone deve conter 11 caracteres!'
-    }
-
-    if (incorreta[0] == true) {
-        legendaTelefoneSuporte.innerHTML = 'Digite apenas números!'
-    }
-
-}
-
-function validarTelefoneRepresentanteCorreto() {
-
-    var telefoneRepresentante = iptTelefoneRepresentante.value;
-    var especial = 'abcdefghijklmnopqrstuvwxyz,.;:?!...+-*/=%<>±÷×≠≈≤≥()[]{}<>&|^~!"`@#$_:;°\§©®™¶' + "'";
-
-    var caractereEspecial = false;
-    var minCaractere = false;
-
-    legendaTelefoneRepresentante.innerHTML = '';
-
-    credenciais[7] = false;
-
-    // Caractere Especial
-    for (var i = 0; i < telefoneRepresentante.length; i++) {
-
-        var caractereAtual = telefoneRepresentante[i];
-        for (var j = 0; j < especial.length; j++) {
-            if (caractereAtual == especial[j]) {
-                caractereEspecial = true;
-            }
-        }
-
-    }
-
-    // Mínimo de 11 Caracteres
-    if (telefoneRepresentante.length == 11) {
-        minCaractere = true;
-    }
-
-    // Trocar cor da borda
-    if ((caractereEspecial == false) && (minCaractere == true)) {
-        iptTelefoneRepresentante.style.borderColor = "#36b0c9";
-        credenciais[7] = true;
-    }
-
-    return [caractereEspecial, minCaractere];
-
-}
-
-function validarTelefoneRepresentanteErrado() {
-
-    var incorreta = validarTelefoneRepresentanteCorreto();
-    if ((incorreta[0] != false) || (incorreta[1] != true)) {
-        iptTelefoneRepresentante.style.borderColor = "#ff0000"
-    }
-
-    if (incorreta[1] == false) {
-        legendaTelefoneRepresentante.innerHTML = 'O telefone deve conter 11 caracteres!'
-    }
-
-    if (incorreta[0] == true) {
-        legendaTelefoneRepresentante.innerHTML = 'Digite apenas números!'
     }
 
 }
@@ -562,7 +560,7 @@ function voltar() {
 
 
 function validar() {
-    let listaEmpresasCadastradas = [];
+    // let listaEmpresasCadastradas = [];
 
     // Verificando se há algum campo em branco
     // if (
@@ -614,7 +612,6 @@ function validar() {
             telefoneRepresentanteServer: telefoneRepresentante,
             cpfServer: cpf,
             senhaServer: senha,
-
             unidadeFederativaServer: unidadeFederativa,
             cidadeServer: cidade,
             bairroServer: bairro,
