@@ -536,7 +536,7 @@ function avançar() {
 
     var tudoCerto = 0;
 
-    for (var i = 0; i < credenciais.length; i++) {
+    for (var i = 0; i < 8; i++) {
         if (credenciais[i] == true) {
             tudoCerto++;
         }
