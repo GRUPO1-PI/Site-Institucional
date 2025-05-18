@@ -8,7 +8,7 @@ function autenticar(email, senha) {
         SELECT email, senha FROM representante WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql1);
-    return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql1, 'passe', 'passe');
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql

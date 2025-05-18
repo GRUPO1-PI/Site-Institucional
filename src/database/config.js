@@ -36,12 +36,14 @@ function executar(instrucao1, instrucao2, instrucao3) {
             return ("ERRO NO MySQL SERVER: ", erro.sqlMessage);
         });
 
-
+        if (instrucao2 == 'passe') {
+                conexao.end();
+            }
 
         // Espera um segundo para cadastrar o representante e o endereço
         setTimeout(() => {
             console.log(instrucao2);
-
+                   
             conexao.connect();
             conexao.query(instrucao2, function (erro, resultados) {
                 if (erro) {
