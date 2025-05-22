@@ -9,7 +9,7 @@
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
 </head>
 
-<body>
+<body onload="obterDados()">
 
     <header>
         <div class="container">
@@ -49,7 +49,7 @@
 
             <div class="filtroSelect">
                 <h2 class="tituloSelect">Setor</h2>
-                <select onchange="teste()" id="select_setor">
+                <select onchange="obterDados()" id="select_setor">
                     <option value="0" disabled selected>Setor:</option>
                     <option value="selecao">Seleção</option>
                     <option value="higienizacao">Higienização</option>
@@ -62,7 +62,7 @@
 
             <div class="filtroSelect">
                 <h2 class="tituloSelect">Esteira</h2>
-                <select onchange="teste()" id="select_esteira">
+                <select onchange="obterDados()" id="select_esteira">
                     <option value="0" disabled selected>Esteira:</option>
                     <option value="1">Esteira 1</option>
                     <option id="optEsteira2" value="2">Esteira 2</option>
@@ -78,7 +78,7 @@
             </div>
             <div class="filtroSelect">
                 <h2 class="tituloSelect">Data</h2>
-                <select onchange="teste()" id="select_dia">
+                <select onchange="obterDados()" id="select_dia">
                     <option value="0" disabled selected>Dia:</option>
                     <option id="optSensor1" value="A24">06/05/2025</option>
                     <option id="optSensor2" value="H34">07/05/2025</option>
@@ -103,7 +103,7 @@
 
 
                     <h2 id="tituloSensor">Sensor</h2>
-                    <select onchange="teste()" id="select_sensor">
+                    <select onchange="obterDados()" id="select_sensor">
                         <option value="0" disabled selected>Sensor:</option>
                         <option id="optSensor1" value="A24">A24</option>
                         <option id="optSensor2" value="H34">H34</option>
