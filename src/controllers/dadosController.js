@@ -40,7 +40,28 @@ function buscar2(req, res) {
         );
 }
 
+function atualizar(req, res) {
+    var sensor = req.params.sensor;
+    console.log(`Recuperando os últimos dados:`);
+
+    dadosModel.atualizar(sensor)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+                console.log(resultado)
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os últimos dados.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+        );
+}
+
 module.exports = {
     buscar,
-    buscar2
+    buscar2,
+    atualizar
 }

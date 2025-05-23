@@ -18,7 +18,17 @@ function buscar2(sensor) {
     return database.executar(instrucaoSql);
 }
 
+function atualizar(sensor) {
+
+    var instrucaoSql = `SELECT produtoDetectado, dtMonitoramento FROM monitoramento AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idMonitoramento DESC LIMIT 1`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscar,
-    buscar2
+    buscar2,
+    atualizar
 }

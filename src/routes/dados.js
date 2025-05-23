@@ -11,4 +11,8 @@ router.get(`/buscar2/:sensor`, function (req, res) {
     dadosController.buscar2(req, res);
 });
 
+router.get(`/atualizar/:sensor`, function (req, res) {
+    dadosController.atualizar(req, res);
+});
+
 module.exports = router;
