@@ -9,6 +9,16 @@ function buscar(setor, esteira) {
     return database.executar(instrucaoSql);
 }
 
+function buscar2(sensor) {
+
+    var instrucaoSql = `SELECT produtoDetectado, dtMonitoramento FROM monitoramento AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idMonitoramento DESC LIMIT 10`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    buscar
+    buscar,
+    buscar2
 }

@@ -40,9 +40,16 @@ function entrar() {
                 sessionStorage.ID_USUARIO = json.idRepresentante;
                 // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                setTimeout(function () {
-                    window.location = "./dashboard.html";
-                }, 1000); // apenas para exibir o loading
+                if (emailVar == 'admin3@admin.com' && senhaVar == 'BATATAS.') {
+                    setTimeout(function () {
+                        window.location = "./bobIndex.html";
+                    }, 1000);
+
+                } else {
+                    setTimeout(function () {
+                        window.location = "./dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+                }
 
             });
 

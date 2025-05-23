@@ -7,4 +7,8 @@ router.get(`/buscar/:setor/:esteira`, function (req, res) {
     dadosController.buscar(req, res);
 });
 
+router.get(`/buscar2/:sensor`, function (req, res) {
+    dadosController.buscar2(req, res);
+});
+
 module.exports = router;

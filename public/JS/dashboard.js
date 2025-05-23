@@ -2,6 +2,10 @@ function obterDados() {
     var esteira = select_esteira.value
     var setor = select_setor.value
 
+    document.getElementById('sensorIndividual').remove();
+    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento Individual</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+
+
     fetch(`/dados/buscar/${setor}/${esteira}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
@@ -13,7 +17,7 @@ function obterDados() {
                     for (var i = 0; i < resposta.length; i++) {
                         var sensor_atual = resposta[i].numSerie;
                         document.getElementById(`select_sensor`).innerHTML += `<option id="optSensor${i + 1}">${sensor_atual}</option>`;
-                       
+
                     }
 
                 });
@@ -26,119 +30,92 @@ function obterDados() {
         }
         );
 
-
 }
 
-function plotarGrafico() {
+function obterDados2() {
+    var sensor = select_sensor.value
+    document.getElementById('sensorIndividual').remove();
+    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento Individual</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
 
-    // Sensores da Esteira
-    sensoresEsteira = new Chart(document.getElementById('sensoresEsteira'), {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00'],
-            datasets: [
-                {
-                    label: 'A12',
-                    data: [1, 2, 3, 2, 3],
-                    fill: false,
-                    bckgroundColor: 'rgb(75, 192, 192)',
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                },
-                {
-                    label: 'B14',
-                    data: [2, 1, 1, 2, 1],
-                    fill: false,
-                    bckgroundColor: 'rgb(75, 192, 192)',
-                    borderColor: 'rgb(192, 75, 75)',
-                    tension: 0.1
-                }
-            ]
-        }
-    });
+    fetch(`/dados/buscar2/${sensor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-    // Sensor Individual
-    sensorIndividual = new Chart(document.getElementById('sensorIndividual'), {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00'],
-            datasets: [{
-                label: 'A12',
-                data: [1, 2, 3, 2, 3],
-                fill: false,
-                bckgroundColor: 'rgb(75, 192, 192)',
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        }
-    });
-
-    // Setores Geral
-    setoresGeral = new Chart(document.getElementById('setoresGeral'), {
-        type: 'bar',
-        data: {
-            labels: ['Dia'],
-            datasets: [{
-                label: 'Seleção de Matéria Prima',
-                data: [3],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 99, 132)'
-                ],
-
-            }, {
-                label: 'Higienização',
-                data: [2],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 159, 64)'
-                ],
-            }, {
-                label: 'Processamento',
-                data: [1],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 205, 86)'
-                ]
-            }, {
-                label: 'Embalagem',
-                data: [1],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 205, 86)'
-                ],
-            }, {
-                label: 'Armazenamento',
-                data: [2],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 159, 64)'
-                ],
-            }, {
-                label: 'Distribuição',
-                data: [3],
-                borderWidth: 1,
-                backgroundColor: [
-                    'rgba(255, 99, 132)'
-                ],
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                }
-            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         }
-    });
+        );
+}
+
+function plotarGrafico(resposta, idUsuario) {
+    var sensor = select_sensor.value
+    console.log(resposta)
+    console.log(idUsuario)
+
+    console.log('iniciando plotagem do gráfico...');
+
+    var labels = [];
+    var lista_indice = [];
+
+    var dados = {
+
+        labels: labels,
+        datasets: [{
+            label: `${sensor}`,
+            data: [],
+            fill: false,
+            borderColor: 'blue',
+            backgroundColor: 'blue',
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    resposta.reverse()
 
 
-    function logout(event) {
-        if (confirm('Tem certeza que deseja fazer logout?')) {
-            window.location.href = './dashboard.html'
-        } else {
-            event.preventDefault();
-        }
+    for (var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.dtMonitoramento);
+        dados.datasets[0].data.push(registro.produtoDetectado);
+    }
+
+
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    myChart = new Chart(
+        document.getElementById(`sensorIndividual`),
+        config
+    );
+}
+
+
+function logout(event) {
+    if (confirm('Tem certeza que deseja fazer logout?')) {
+        window.location.href = './dashboard.html'
+    } else {
+        event.preventDefault();
     }
 }
