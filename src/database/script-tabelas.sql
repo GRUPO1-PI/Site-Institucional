@@ -56,8 +56,6 @@ insert into setor(nome, fkEmpresa) values
 ('Distribuição', 1);
 
 
-
-
 CREATE TABLE esteira (
     idEsteira INT PRIMARY KEY AUTO_INCREMENT,
     idSetor INT, -- verificar a necessidade de uma coluna metragem./ 4 sensores para cada esteira

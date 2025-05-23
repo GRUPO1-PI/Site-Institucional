@@ -10,7 +10,13 @@ function obterDados() {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGrafico(resposta, idUsuario);
+
+                    for (var i = 0; i < resposta.length; i++) {
+                        var sensor_atual = resposta[i];
+                        document.getElementById(`optSensor${i + 1}`).innnerHTML = sensor_atual;
+                       
+                    }
+
 
                 });
             } else {
@@ -21,6 +27,8 @@ function obterDados() {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         }
         );
+
+
 }
 
 function plotarGrafico() {

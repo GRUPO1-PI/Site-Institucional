@@ -2,8 +2,8 @@ var database = require("../database/config");
 
 function buscar(setor, esteira) {
 
-    var instrucaoSql = `SELECT numSerie FROM sensor JOIN esteira ON fkEsteira = idEsteira JOIN
-    setor ON esteira.idSetor = setor.idSetor WHERE idEsteira = '${esteira}' AND setor.nome = ${setor}`;
+    var instrucaoSql = `SELECT s.numSerie FROM sensor AS s JOIN esteira AS e ON
+    s.fkEsteira = e.idEsteira WHERE s.fkEsteira = '${esteira}' AND e.idSetor = ${setor}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
