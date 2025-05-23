@@ -18,6 +18,7 @@ CREATE TABLE endereco (
     logradouro VARCHAR(100) not null,
     numero INT not null,
     complemento VARCHAR(40), 
+    bairro VARCHAR(100) not null,
     cidade VARCHAR(100) not null,
     UF CHAR(2) not null,
     cep CHAR(8) not null,

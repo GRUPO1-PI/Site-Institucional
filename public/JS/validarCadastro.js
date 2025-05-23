@@ -595,7 +595,7 @@ function validar() {
     // }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrar1", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -605,19 +605,8 @@ function validar() {
             // Agora vá para o arquivo routes/usuario.js
 
             razaoSocialServer: razaoSocial,
-            emailServer: email,
             telefoneSuporteServer: telefoneSuporte,
             cnpjServer: cnpj,
-            representanteServer: representante,
-            telefoneRepresentanteServer: telefoneRepresentante,
-            cpfServer: cpf,
-            senhaServer: senha,
-            unidadeFederativaServer: unidadeFederativa,
-            cidadeServer: cidade,
-            bairroServer: bairro,
-            cepServer: cep,
-            logradouroServer: logradouro,
-            numServer: num
 
         }),
     })
@@ -631,7 +620,7 @@ function validar() {
                     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                 setTimeout(() => {
-                    window.location = "login.html";
+                    window.location = "./login.html";
                 }, "2000");
 
                 // limparFormulario();
@@ -645,7 +634,93 @@ function validar() {
             // finalizarAguardar();
         });
 
-    return false;
+    fetch("/usuarios/cadastrar2", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+
+            representanteServer: representante,
+            emailServer: email,
+            telefoneRepresentanteServer: telefoneRepresentante,
+            cpfServer: cpf,
+            senhaServer: senha
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML =
+                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "./login.html";
+                }, "2000");
+
+                // limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+ 
+
+    fetch("/usuarios/cadastrar3", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+
+            unidadeFederativaServer: unidadeFederativa,
+            cidadeServer: cidade,
+            bairroServer: bairro,
+            cepServer: cep,
+            logradouroServer: logradouro,
+            numServer: num,
+
+
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML =
+                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "./login.html";
+                }, "2000");
+
+                // limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+
+
 
     // Listando empresas cadastradas 
     //   function listar() {

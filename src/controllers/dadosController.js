@@ -3,7 +3,7 @@ var dadosModel = require("../models/dadosModel");
 function buscar(req, res) {
     var setor = req.params.setor;
     var esteira = req.params.esteira;
-    console.log(`Recuperando os últimos dados`);
+    console.log(`Recuperando os últimos dados: ${setor}, ${esteira}`);
 
     dadosModel.buscar(setor, esteira)
         .then(function (resultado) {

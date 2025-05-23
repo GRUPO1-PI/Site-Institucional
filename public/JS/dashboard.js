@@ -2,21 +2,19 @@ function obterDados() {
     var esteira = select_esteira.value
     var setor = select_setor.value
 
-    document.getElementById('sensoresEsteira').remove();
-    document.getElementById('sensoresEsteira').innerHTML = '';
-
     fetch(`/dados/buscar/${setor}/${esteira}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+                    document.getElementById(`select_sensor`).innerHTML = ''
+
                     for (var i = 0; i < resposta.length; i++) {
-                        var sensor_atual = resposta[i];
-                        document.getElementById(`optSensor${i + 1}`).innnerHTML = sensor_atual;
+                        var sensor_atual = resposta[i].numSerie;
+                        document.getElementById(`select_sensor`).innerHTML += `<option id="optSensor${i + 1}">${sensor_atual}</option>`;
                        
                     }
-
 
                 });
             } else {
