@@ -7,6 +7,8 @@
     <title>Sonicorp - Dashboard</title>
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
+    <script src="../JS/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body onload="obterDados()">
@@ -73,13 +75,8 @@
                 </select>
             </div>
             <div class="filtroSelect">
-                <h2 class="tituloSelect">Data</h2>
-                <select onchange="obterDados()" id="select_dia">
-                    <option value="0" disabled selected>Dia:</option>
-                    <option id="optSensor1" value="A24">06/05/2025</option>
-                    <option id="optSensor2" value="H34">07/05/2025</option>
-                    <option id="optSensor3" value="C04">08/05/2025</option>
-                    <option id="optSensor4" value="X94">09/05/2025</option>
+                <h2 id="tituloSensor">Sensor</h2>
+                <select onchange="obterDados2()" id="select_sensor">
                 </select>
             </div>
 
@@ -95,13 +92,19 @@
                         <p id="KPI1_paragrafo">KPI</p>
                     </div>
                 </div>
-                <div>
-
-                    <h2 id="tituloSensor">Sensor</h2>
-                    <select onchange="obterDados2()" id="select_sensor">
-                    </select>
-
+                <div class="card">
+                    <img src="../IMG/setor.png" alt="">
+                    <div class="info">
+                        <p id="KPI1_paragrafo">KPI</p>
+                    </div>
                 </div>
+                <div class="card">
+                    <img src="../IMG/alerta.png" alt="">
+                    <div class="info">
+                        <p id="KPI1_paragrafo">KPI</p>
+                    </div>
+                </div>
+
                 <div class="card">
                     <img src="../IMG/setor.png" alt="">
                     <div class="info">
@@ -136,5 +139,3 @@
 </body>
 
 </html>
-<script src="../JS/dashboard.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>l
