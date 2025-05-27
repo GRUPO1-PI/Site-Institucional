@@ -3,7 +3,7 @@ function obterDados() {
     var setor = select_setor.value
 
     document.getElementById('sensorIndividual').remove();
-    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento Individual</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento de Sensor Individual por Segundo</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
 
 
     fetch(`/dados/buscar/${setor}/${esteira}`, { cache: 'no-store' })
@@ -12,7 +12,7 @@ function obterDados() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    document.getElementById(`select_sensor`).innerHTML = '<option disabled selected>Selecione Sensor</option>`; '
+                    document.getElementById(`select_sensor`).innerHTML = ''
 
                     for (var i = 0; i < resposta.length; i++) {
                         var sensor_atual = resposta[i].numSerie;
@@ -20,6 +20,34 @@ function obterDados() {
 
                     }
 
+                    obterDados2()
+                    obterDados3()
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+
+}
+
+function obterDados2() {
+    var sensor = select_sensor.value
+    document.getElementById('sensorIndividual').remove();
+    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento de Sensor Individual por Segundo</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+
+    fetch(`/dados/buscar2/${sensor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse()
+                    plotarGrafico(resposta)
+                    //atualizarGrafico()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -31,19 +59,17 @@ function obterDados() {
         );
 }
 
-function obterDados2() {
-    var sensor = select_sensor.value
-    document.getElementById('sensorIndividual').remove();
-    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento Individual</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+function obterDados3() {
+    var esteira = select_esteira.value
+    var setor = select_setor.value
 
-    fetch(`/dados/buscar2/${sensor}`, { cache: 'no-store' })
+    fetch(`/dados/buscar3/${esteira}/${setor}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse()
-                    plotarGrafico(resposta)
-                    atualizarGrafico()
+                    plotarGraficoBarra(resposta)
+                    //atualizarGrafico()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -53,6 +79,34 @@ function obterDados2() {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         }
         );
+
+    document.getElementById('sensoresEsteira').remove();
+    document.getElementById('containerEsteira').innerHTML = `<h2 id="tituloSensorIndi">Monitoramento de Sensores por Esteira </h2> <canvas height="115vh" id="sensoresEsteira" class="grafico"></canvas>`;
+
+}
+
+function obterDados4() {
+
+    fetch(`/dados/buscar4`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGraficoBarra2(resposta)
+                    //atualizarGrafico()
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+
+    document.getElementById('setoresGeral').remove();
+    document.getElementById('containerGeral').innerHTML = `<h2 id="textoGraficoPorMinuto">Monitoramnto de Alertas por Setor</h2><canvas height="58vh" id="setoresGeral" class="grafico"></canvas>`
+    obterDados()
 }
 
 function plotarGrafico(resposta) {
@@ -66,7 +120,7 @@ function plotarGrafico(resposta) {
 
         labels: labels,
         datasets: [{
-            label: `${sensor}`,
+            label: `${sensor} `,
             data: [],
             fill: false,
             borderColor: 'blue',
@@ -108,16 +162,114 @@ function plotarGrafico(resposta) {
     );
 }
 
+function plotarGraficoBarra(resposta) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    var labels = []
+
+    var dados = {
+
+        labels: labels,
+        datasets: [{
+            label: 'Sensores',
+            data: [],
+            fill: false,
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            tension: 0.1
+        }]
+    }
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+
+    for (var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.numSerie);
+        dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    const config = {
+        type: 'bar',
+        data: dados,
+    };
+
+    myChart = new Chart(
+        document.getElementById(`sensoresEsteira`),
+        config
+    );
+}
+
+function plotarGraficoBarra2(resposta) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    var labels = []
+
+    var dados = {
+
+        labels: labels,
+        datasets: [{
+            label: 'Setores',
+            data: [],
+            fill: false,
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            tension: 0.1
+        }]
+    }
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+
+    for (var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.nome);
+        dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    const config = {
+        type: 'bar',
+        data: dados,
+    };
+
+    myChart = new Chart(
+        document.getElementById(`setoresGeral`),
+        config
+    );
+}
+
 function atualizarGrafico() {
     var sensor = select_sensor.value
 
-    fetch(`/dados/atualizar/${sensor}`, { cache: 'no-store' })
+    fetch(`/ dados / atualizar / ${sensor} `, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)} `);
+                    console.log(`Dados atuais do gráfico: `);
                     console.log(dados);
 
                     if (novoRegistro[0].dtMonitoramento == dados.labels[dados.labels.length - 1]) {
@@ -149,7 +301,7 @@ function atualizarGrafico() {
             }
         })
         .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
         });
     atualizarGrafico()
 }
