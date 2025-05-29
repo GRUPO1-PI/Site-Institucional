@@ -148,10 +148,12 @@ header .container {
 .formulario .adicional {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 10px;
+    font-size: 13px;
+    color: red;
 }
 
 .formulario button {

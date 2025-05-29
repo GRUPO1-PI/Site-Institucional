@@ -699,14 +699,10 @@ function validar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
-
-                mensagem_erro.innerHTML =
-                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                 setTimeout(() => {
                     window.location = "./login.html";
-                }, "2000");
+                }, 2000);
 
                 // limparFormulario();
                 // finalizarAguardar();

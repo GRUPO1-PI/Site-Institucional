@@ -4,6 +4,8 @@ function entrar() {
     var emailVar = iptEmailLogin.value;
     var senhaVar = iptSenhaLogin.value;
 
+    legendaLogin.innerHTML = ''
+
     // if (emailVar == "" || senhaVar == "") {
     //     cardErro.style.display = "block"
     //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
@@ -53,6 +55,8 @@ function entrar() {
 
             });
 
+        } else {
+            legendaLogin.innerHTML = 'Erro no login! Confira suas credênciais!'
         }
 
     }).catch(function (erro) {
