@@ -343,6 +343,8 @@ function atualizarGrafico() {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
         });
+
+        atualizarGrafico()
 }
 
 
