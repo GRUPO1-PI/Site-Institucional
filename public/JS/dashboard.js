@@ -47,7 +47,7 @@ function obterDados2() {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse()
                     plotarGrafico(resposta)
-                    //atualizarGrafico()
+                    atualizarGrafico()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -93,7 +93,7 @@ function obterDados4() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     plotarGraficoBarra2(resposta)
-                    //atualizarGrafico()
+                    
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -166,18 +166,36 @@ function plotarGraficoBarra(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    var labels = []
+    var labels = ['','','','']
 
     var dados = {
 
         labels: labels,
         datasets: [{
-            label: 'Sensores',
+            label: resposta[0]['numSerie'],
             data: [],
             fill: false,
             borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
             backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
             tension: 0.1
+        },
+        {
+            label: resposta[1]['numSerie'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+        },
+        {
+            label: resposta[2]['numSerie'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+        },
+        {
+            label: resposta[3]['numSerie'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
         }]
     }
 
@@ -188,7 +206,6 @@ function plotarGraficoBarra(resposta) {
 
     for (var i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        labels.push(registro.numSerie);
         dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
     }
 
@@ -215,18 +232,42 @@ function plotarGraficoBarra2(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    var labels = []
+    var labels = ['','','','', '']
 
     var dados = {
 
         labels: labels,
         datasets: [{
-            label: 'Setores',
+            label: 'Seleção',
             data: [],
             fill: false,
             borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
             backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
             tension: 0.1
+        },
+        {
+            label: resposta[1]['nome'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+        },
+        {
+            label: resposta[2]['nome'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+        },
+        {
+            label: resposta[3]['nome'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+        },
+        {
+            label: resposta[4]['nome'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
         }]
     }
 
@@ -237,7 +278,6 @@ function plotarGraficoBarra2(resposta) {
 
     for (var i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        labels.push(registro.nome);
         dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
     }
 
@@ -270,7 +310,7 @@ function atualizarGrafico() {
 
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)} `);
                     console.log(`Dados atuais do gráfico: `);
-                    console.log(dados);
+                    console.log(novoRegistro);
 
                     if (novoRegistro[0].dtMonitoramento == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
@@ -292,18 +332,17 @@ function atualizarGrafico() {
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(), 2000);
             }
         })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
         });
-    atualizarGrafico()
 }
 
 
