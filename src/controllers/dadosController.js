@@ -101,10 +101,32 @@ function atualizar(req, res) {
         );
 }
 
+function atualizar2(req, res) {
+    var esteira = req.params.esteira;
+    var setor = req.params.setor;
+    console.log(`Recuperando os últimos dados:`);
+
+    dadosModel.atualizar2(esteira, setor)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+                console.log(resultado)
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os últimos dados.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+        );
+}
+
 module.exports = {
     buscar,
     buscar2,
     buscar3,
     buscar4,
-    atualizar
+    atualizar,
+    atualizar2
 }

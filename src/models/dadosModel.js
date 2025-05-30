@@ -47,10 +47,21 @@ function atualizar(sensor) {
     return database.executar(instrucaoSql);
 }
 
+function atualizar2(esteira, setor) {
+
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado), s.numSerie, MAX(dtMonitoramento) FROM monitoramento AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND 
+    e.idSetor = ${setor} GROUP BY s.numSerie`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscar,
     buscar3,
     buscar2,
     buscar4,
-    atualizar
+    atualizar,
+    atualizar2
 }

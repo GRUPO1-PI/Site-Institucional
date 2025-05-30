@@ -1,3 +1,6 @@
+
+var dados;
+
 function obterDados() {
     var esteira = select_esteira.value
     var setor = select_setor.value
@@ -10,7 +13,7 @@ function obterDados() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos 1: ${JSON.stringify(resposta)}`);
 
                     document.getElementById(`select_sensor`).innerHTML = ''
 
@@ -44,10 +47,9 @@ function obterDados2() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos 2: ${JSON.stringify(resposta)}`);
                     resposta.reverse()
                     plotarGrafico(resposta)
-                    atualizarGrafico()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -67,9 +69,8 @@ function obterDados3() {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
                     plotarGraficoBarra(resposta)
-                    //atualizarGrafico()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -93,7 +94,7 @@ function obterDados4() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     plotarGraficoBarra2(resposta)
-                    
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -105,7 +106,7 @@ function obterDados4() {
         );
 
     document.getElementById('setoresGeral').remove();
-    document.getElementById('containerGeral').innerHTML = `<h2 id="textoGraficoPorMinuto">Monitoramnto de Alertas por Setor</h2><canvas height="58vh" id="setoresGeral" class="grafico"></canvas>`
+    document.getElementById('containerGeral').innerHTML = `<h2 id="textoGraficoPorMinuto">Monitoramento de Alertas por Setor</h2><canvas height="58vh" id="setoresGeral" class="grafico"></canvas>`
     obterDados()
 }
 
@@ -114,9 +115,9 @@ function plotarGrafico(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    var labels = [];
+    let labels = [];
 
-    var dados = {
+    let dados = {
 
         labels: labels,
         datasets: [{
@@ -160,42 +161,32 @@ function plotarGrafico(resposta) {
         document.getElementById(`sensorIndividual`),
         config
     );
+
+    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 1000);
 }
 
 function plotarGraficoBarra(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    var labels = ['','','','']
+    let labels = []
 
-    var dados = {
+    let dados = {
 
         labels: labels,
         datasets: [{
             label: resposta[0]['numSerie'],
             data: [],
             fill: false,
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            borderColor: ['#002B4D'],
+            backgroundColor: ['#002B4D'],
             tension: 0.1
         },
         {
             label: resposta[1]['numSerie'],
             data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-        },
-        {
-            label: resposta[2]['numSerie'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-        },
-        {
-            label: resposta[3]['numSerie'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            borderColor: ['#6699CC'],
+            backgroundColor: ['#6699CC'],
         }]
     }
 
@@ -204,9 +195,11 @@ function plotarGraficoBarra(resposta) {
     console.log(resposta)
 
 
-    for (var i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
+    for (var i = 0; i < 2; i++) {
+        var registro = resposta[i]['SUM(m.produtoDetectado)'];
+        var registro2 = resposta[i]['MAX(dtMonitoramento)']
+        dados.datasets[i].data.push(registro);
+        labels.push(registro2);
     }
 
     console.log('----------------------------------------------')
@@ -218,23 +211,25 @@ function plotarGraficoBarra(resposta) {
     console.log('----------------------------------------------')
 
     const config = {
-        type: 'bar',
+        type: 'line',
         data: dados,
     };
 
-    myChart = new Chart(
+    myChart2 = new Chart(
         document.getElementById(`sensoresEsteira`),
         config
     );
+
+    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart), 10000);
 }
 
 function plotarGraficoBarra2(resposta) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    var labels = ['','','','', '']
+    let labels = ['', '', '', '', '', '']
 
-    var dados = {
+    let dados = {
 
         labels: labels,
         datasets: [{
@@ -248,27 +243,33 @@ function plotarGraficoBarra2(resposta) {
         {
             label: resposta[1]['nome'],
             data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
         },
         {
             label: resposta[2]['nome'],
             data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
         },
         {
             label: resposta[3]['nome'],
             data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
         },
         {
             label: resposta[4]['nome'],
             data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90'],
-        }]
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+        },
+        {
+            label: resposta[5]['nome'],
+            data: [],
+            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
+        },]
     }
 
     console.log('----------------------------------------------')
@@ -298,20 +299,22 @@ function plotarGraficoBarra2(resposta) {
         document.getElementById(`setoresGeral`),
         config
     );
+
 }
 
-function atualizarGrafico() {
+function atualizarGrafico(dados, myChart) {
     var sensor = select_sensor.value
 
-    fetch(`/ dados / atualizar / ${sensor} `, { cache: 'no-store' })
+    fetch(`/dados/atualizar/${sensor}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)} `);
-                    console.log(`Dados atuais do gráfico: `);
-                    console.log(novoRegistro);
+                    console.log(`Dados recebidos atualizar: ${JSON.stringify(novoRegistro)} `);
+                    console.log(`Dados atuais do gráfico atualizar: `);
+                    console.log(dados);
 
+                    novoRegistro[0].dtMonitoramento = novoRegistro[0].dtMonitoramento.slice(11, 19);
                     if (novoRegistro[0].dtMonitoramento == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
@@ -332,12 +335,15 @@ function atualizarGrafico() {
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(), 10000);
+
+                    console.log(`${dados.datasets[0].data[0]}`)
+                    console.log(`${dados.datasets[0].data[9]}`)
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 1000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(), 10000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 1000);
             }
         })
         .catch(function (error) {
@@ -346,6 +352,49 @@ function atualizarGrafico() {
 
 }
 
+function atualizarGrafico2(dados, myChart2) {
+    var esteira = select_esteira.value
+    var setor = select_setor.value
+
+    fetch(`/dados/atualizar2/${esteira}/${setor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos atualizar: ${JSON.stringify(novoRegistro)} `);
+                    console.log(`Dados atuais do gráfico atualizar2: `);
+                    console.log(dados)
+
+                    if (dados.datasets[0].data.length > 7) {
+                        dados.datasets[0].data[0].shift()
+                        dados.datasets[1].data[0].shift()
+                        dados.labels.shift()
+                    }
+
+                    dados.labels.push(novoRegistro[0]['MAX(dtMonitoramento)'])
+                    dados.datasets[0].data.push(novoRegistro[0]['SUM(m.produtoDetectado)'])
+                    dados.datasets[0].data.push(novoRegistro[1]['SUM(m.produtoDetectado)'])
+
+                    myChart2.update();
+
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+
+                    console.log(dados.datasets[0].data['SUM(m.produtoDetectado)'])
+
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart2), 10000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart2), 10000);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
+        });
+
+}
 
 function logout(event) {
     if (confirm('Tem certeza que deseja fazer logout?')) {

@@ -23,4 +23,8 @@ router.get(`/atualizar/:sensor`, function (req, res) {
     dadosController.atualizar(req, res);
 });
 
+router.get(`/atualizar2/:esteira/:setor`, function (req, res) {
+    dadosController.atualizar2(req, res);
+});
+
 module.exports = router;
