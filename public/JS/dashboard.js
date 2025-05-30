@@ -332,19 +332,18 @@ function atualizarGrafico() {
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(), 10000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(), 10000);
             }
         })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
         });
 
-        atualizarGrafico()
 }
 
 
