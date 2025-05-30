@@ -28,7 +28,7 @@ header .container {
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   color: #ffffff;
   list-style: none;
   width: 300px;
@@ -61,6 +61,15 @@ header .container {
 
 .texto {
     font-size: 18px;
+    justify-content: center;
+    display: flex;
+
+}
+
+.slcPorte{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .boxes {
@@ -81,16 +90,31 @@ header .container {
 .calculadora{
   padding-top: 30px;
   padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .calculadora .container {
-  width: 1250px;
-  height: 1200px;
+  width: 90%;
+  height: 1250px;
   background-color: #c3ccd4;
   border-radius: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
 }
+
+
+.calculadora h1, h2{
+  display: flex;
+  justify-content: center;
+}
+
 
 span{
   font-size: 17px;

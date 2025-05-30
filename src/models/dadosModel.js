@@ -1,13 +1,13 @@
 var database = require("../database/config");
 
-function buscar(setor, esteira) {
+// function buscar(setor, esteira) {
 
-    var instrucaoSql = `SELECT s.numSerie FROM sensor AS s JOIN esteira AS e ON
-    s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND e.idSetor = ${setor}`;
+//     var instrucaoSql = `SELECT s.numSerie FROM sensor AS s JOIN esteira AS e ON
+//     s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND e.idSetor = ${setor}`;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+//     return database.executar(instrucaoSql);
+// }
 
 function buscar2(sensor) {
 
@@ -19,6 +19,6 @@ function buscar2(sensor) {
 }
 
 module.exports = {
-    buscar,
+    // buscar,
     buscar2
 }

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/calculadora.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./IMG/sonicorp_logo-sem fundo.png" alt="Sonicor Logo">
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li>|</li>
+                <li><a href="./dashboard.html">Dashboard</a></li>
+            </ul>
+
+            <div class="logout">
+                <a href="./login.html"><img src="./IMG/iconePerfil.png" alt="Ícone de Perfil"></a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="form_perda">
+        <div>
+            <h1>Calculadora Financeira</h1>
+            <form action="#">
+                <label for="input_desvio">Quantidade de Paradas Indesejadas</label>
+                <input type="number" id="input_desvio" placeholder="Quantidade de Paradas">
+
+                <label for="input_mediaT">Qual a duração média dessas paradas? (em minutos)</label>
+                <input type="number" id="input_mediaT" placeholder="Quantidade de Minutos">
+
+                <label for="select_porte">Qual é o porte de sua empresa?</label>
+                <select id="select_porte">
+                    <option value="p">Pequeno Porte</option>
+                    <option value="m">Médio Porte</option>
+                    <option value="g">Grande Porte</option>
+                </select>
+
+            </form>
+
+        </div>
+    </section>
+
+    <section class="form_orcamento">
+        <div>
+            <h1>Orçamento</h1>
+            <h3>Informe os metros de esteira em cada setor da produção. Caso não tenha um setor, deixe o campo em branco.</h3>
+            <form action="#">
+                <label for="input_materiaP">Seleção de Materia Prima</label>
+                <input type="number" id="input_materiaP">
+
+                <label for="input_hienizacao">Higienização</label>
+                <input type="number" id="input_hienizacao">
+
+                <label for="input_processamento">Processamento</label>
+                <input type="number" id="input_processamento">
+
+                <label for="input_embalagem">Embalagem</label>
+                <input type="number" id="input_embalagem">
+
+                <label for="input_armazenamento">Armazenamento</label>
+                <input type="number" id="input_armazenamento">
+
+                <label for="input_distribuicao">Distribuição</label>
+                <input type="number" id="input_distribuicao">
+
+            </form>
+
+        </div>
+    </section>
+
+    <section class="resultado">
+        <div>
+            <h2>Preencha os campos acima e clique no botão para ver os resultados.</h2>
+
+            <button onclick="calcular()">Calcular</button>
+            
+            <div id="mensagem_perda" style="margin-top: 20px;"></div>
+            <div id="mensagem_orcamento" style="margin-top: 20px;"></div>
+            <div id="mensagem_final" style="margin-top: 20px;"></div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+
+            <div class="logoFooter">
+                <a href="./index.html"> <img src="./IMG/sonicorp.png"
+                        alt="Logo - Sonicorp"></a>
+            </div>
+
+            <div class="colunas">
+                <div class="coluna"> 
+                    <h3>Início</h3>
+                    <p><a class="incio" href="./index.html">Home</a></p>
+                    <p><a class="incio" href="./calculadoraFinanceira.html">Simulador</a></p>
+                    <p><a class="incio" href="./login.html">Login</a></p>
+                    <p><a class="incio" href="./cadastro.html">Cadastro</a></p>
+                </div>
+                <div class="coluna">
+                    <h3>Sobre nós</h3>
+                    <p>Sobre a empresa</p>
+                    <p>Contato</p>
+                </div>
+                <div class="coluna">
+                    <h3>Suporte</h3>
+                    <p>Ajuda</p>
+                </div>
+            </div>
+
+
+            <div class="contatoSocial">
+                <div class="icones">
+                    <a href="#" target="_blank"><img src="./IMG/iconeTwitter.png" alt="Ícone do Twitter (X)"></a>
+                    <a href="#" target="_blank"><img src="./IMG/iconeInstagram.png" alt="Ícone do Instagram"></a>
+                    <a href="#" target="_blank"><img src="./IMG/iconeLinkedin.png" alt="Ícone do Linkedin"></a>
+                </div>
+                <button>Contato</button>
+            </div>
+
+        </div>
+        </div>
+        <div class="corp">
+            <p>© Copyright - Sonicorp - Todos os Direitos Reservados</p>
+        </div>
+
+     </footer>
+
+</body>
+</html>
+
+<script>
+    var precoSensor = 200;
+    function calcular() {
+        var mensagemErro = ""
+        var mensagemPerda = ""
+
+        var mensagemErroO = ""
+        var mensagemM = ""
+        var mensagemH = ""
+        var mensagemP = ""
+        var mensagemE = ""
+        var mensagemA = ""
+        var mensagemD = ""
+
+        var mensagemT = ""
+
+
+
+        // Perda
+        var desvio = Number(input_desvio.value);
+        var tempo = (Number(input_mediaT.value) / 60).toFixed(2);
+        var porte = select_porte.value;
+        var totalPerda = 0;
+
+        if (porte == 'p') {
+            totalPerda = desvio * 10000 * tempo;
+        } else if (porte == 'm') {
+            totalPerda = desvio * 30000 * tempo;
+        } else {
+            totalPerda = desvio * 50000 * tempo;
+        }
+
+
+        if ((desvio < 0) || (tempo < 0)) {
+            mensagemErro += `Valor inválido.`;
+
+        } else if ((desvio == 0) || (tempo == 0)) {
+            mensagemErro += `Todos os campos devem ser preenchidos.`;
+        } else {
+            mensagemPerda += `<b>O total médio gasto, em reais, que poderia ter sido evitado com o uso de nossa tecnologia foi de  <span style="color: rgb(255, 0, 0);">R$${totalPerda.toFixed(2)}</span>.</b> <br>`
+        }
+
+        // Orçamento
+
+        var setor1 = Number(input_materiaP.value);
+        var setor2 = Number(input_hienizacao.value);
+        var setor3 = Number(input_processamento.value);
+        var setor4 = Number(input_embalagem.value);
+        var setor5 = Number(input_armazenamento.value);
+        var setor6 = Number(input_distribuicao.value);
+
+        if ((setor1 < 0) || (setor2 < 0) || (setor3 < 0) || (setor4 < 0) || (setor5 < 0) || (setor6 < 0)) {
+            mensagemErroO = 'Valor inválido.';
+        } else {
+
+            var totalMetros = setor1 + setor2 + setor3 + setor4 + setor5 + setor6;
+            var totalSensor = totalMetros / 4;
+            var totalValorSensor = totalSensor.toFixed() * precoSensor;
+
+            if (setor1 > 0) {
+                mensagemM += `<b>Este setor precisará de ${(setor1 / 4).toFixed()} pares de sensores</b>`;
+            }
+            if (setor2 > 0) {
+                mensagemH += `<b>Este setor precisará de ${(setor2 / 4).toFixed()} pares de sensores</b>`;
+            }
+            if (setor3 > 0) {
+                mensagemP += `<b>Este setor precisará de ${(setor3 / 4).toFixed()} pares de sensores</b>`;
+            }
+            if (setor4 > 0) {
+                mensagemE += `<b>Este setor precisará de ${(setor4 / 4).toFixed()} pares de sensores</b>`;
+            }
+            if (setor5 > 0) {
+                mensagemA += `<b>Este setor precisará de ${(setor5 / 4).toFixed()} pares de sensores</b>`;
+            }
+            if (setor6 > 0) {
+                mensagemD += `<b>Este setor precisará de ${(setor6 / 4).toFixed()} pares de sensores</b>`;
+            }
+            mensagemT.innerHTML = `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color: rgb(255, 0, 0);"> R$${totalValorSensor}</span>.</b>`
+
+            // Mensagem final
+            var valorEconomizado = totalPerda - totalValorSensor;
+
+            if (desvio > 0 && tempo > 0) {
+                mensagemT.innerHTML += `<b>Com o nosso serviço de custo R$${totalValorSensor}, a economia de sua empresa seria de  <span style="color: #6bbd19;">R$${valorEconomizado.toFixed(2)}</span>, com o aumento de  <span style="color: #6bbd19;">${((valorEconomizado / totalPerda * 100) / 4).toFixed(2)}% </span>semanal.</b>`;
+            } else {
+                mensagemT.innerHTML += `Valor não inserido, preencha todos os campos necessários.`;
+            }
+
+                    document.getElementById("mensagem_perda").innerHTML = mensagemPerda;
+        document.getElementById("mensagem_orcamento").innerHTML = `
+        ${mensagemM}<br>
+        ${mensagemH}<br>
+        ${mensagemP}<br>
+        ${mensagemE}<br>
+        ${mensagemA}<br>
+        ${mensagemD}<br>
+        ${mensagemErroO ? `<b style="color: red">${mensagemErroO}</b><br>` : ''}
+        ${`<br>`}
+        <b>${totalMetros} metros de esteira</b><br>
+        <b>${totalSensor.toFixed()} pares de sensores</b><br>
+        <b><span style="color: red">R$${totalValorSensor}</span> de custo estimado</b>
+        `;
+        }
+    }
+
+</script>
