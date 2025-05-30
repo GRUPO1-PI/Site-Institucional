@@ -37,7 +37,8 @@ CREATE TABLE representante (
 );
 
 insert into representante values
-(default, 'Charles Xavier', '30550343054', '11997891312', 'xavier@email.com', 'BATATAS.', 1);
+(default, 'Charles Xavier', '30550343054', '11997891312', 'xavier@email.com', 'BATATAS.', 1),
+(default, 'Admin', '95853892395', '11984991395', 'admin3@admin.com', 'BATATAS.', 1);
 
 CREATE TABLE setor (
     idSetor INT AUTO_INCREMENT PRIMARY KEY,
