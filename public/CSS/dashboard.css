@@ -229,3 +229,35 @@ select {
     margin-top: -30vh;
 
 }
+
+
+table {
+    width: 98%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    height: 98%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 2vh;
+
+}
+
+th {
+    background-color: #D9D9D9;
+    color: #333;
+
+}
+
+h3 {
+
+    justify-self: center;
+
+}

@@ -24,7 +24,7 @@ function obterDados() {
                     }
 
                     obterDados2()
-                    obterDados3()
+                    // obterDados3()
 
                 });
             } else {
@@ -165,63 +165,63 @@ function plotarGrafico(resposta) {
     proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 1000);
 }
 
-function plotarGraficoBarra(resposta) {
+// function plotarGraficoBarra(resposta) {
 
-    console.log('iniciando plotagem do gráfico...');
+//     console.log('iniciando plotagem do gráfico...');
 
-    let labels = []
+//     let labels = []
 
-    let dados = {
+//     let dados = {
 
-        labels: labels,
-        datasets: [{
-            label: resposta[0]['numSerie'],
-            data: [],
-            fill: false,
-            borderColor: ['#002B4D'],
-            backgroundColor: ['#002B4D'],
-            tension: 0.1
-        },
-        {
-            label: resposta[1]['numSerie'],
-            data: [],
-            borderColor: ['#6699CC'],
-            backgroundColor: ['#6699CC'],
-        }]
-    }
+//         labels: labels,
+//         datasets: [{
+//             label: resposta[0]['numSerie'],
+//             data: [],
+//             fill: false,
+//             borderColor: ['#002B4D'],
+//             backgroundColor: ['#002B4D'],
+//             tension: 0.1
+//         },
+//         {
+//             label: resposta[1]['numSerie'],
+//             data: [],
+//             borderColor: ['#6699CC'],
+//             backgroundColor: ['#6699CC'],
+//         }]
+//     }
 
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+//     console.log('----------------------------------------------')
+//     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+//     console.log(resposta)
 
 
-    for (var i = 0; i < 2; i++) {
-        var registro = resposta[i]['SUM(m.produtoDetectado)'];
-        var registro2 = resposta[i]['MAX(dtMonitoramento)']
-        dados.datasets[i].data.push(registro);
-        labels.push(registro2);
-    }
+//     for (var i = 0; i < 2; i++) {
+//         var registro = resposta[i]['SUM(m.produtoDetectado)'];
+//         var registro2 = resposta[i]['MAX(dtMonitoramento)']
+//         dados.datasets[i].data.push(registro);
+//         labels.push(registro2);
+//     }
 
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels)
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
+//     console.log('----------------------------------------------')
+//     console.log('O gráfico será plotado com os respectivos valores:')
+//     console.log('Labels:')
+//     console.log(labels)
+//     console.log('Dados:')
+//     console.log(dados.datasets)
+//     console.log('----------------------------------------------')
 
-    const config = {
-        type: 'line',
-        data: dados,
-    };
+//     const config = {
+//         type: 'line',
+//         data: dados,
+//     };
 
-    myChart2 = new Chart(
-        document.getElementById(`sensoresEsteira`),
-        config
-    );
+//     myChart2 = new Chart(
+//         document.getElementById(`sensoresEsteira`),
+//         config
+//     );
 
-    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart), 10000);
-}
+//     proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart), 10000);
+// }
 
 function plotarGraficoBarra2(resposta) {
 
@@ -403,3 +403,42 @@ function logout(event) {
         event.preventDefault();
     }
 }
+
+// Teste Tabela
+
+function teste() {
+
+
+    tabela.innerHTML = '<tr><th>Sensor</th><th>Alertas</th></tr>';
+
+    var esteira = select_esteira.value
+    var setor = select_setor.value
+
+    fetch(`/dados/buscar3/${esteira}/${setor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+
+                    if (resposta != undefined) {
+                        for (var i = 0; i < resposta.length; i++) {
+                            tabela.innerHTML += `<tr><td>${resposta[i]['numSerie']}</td><td>${resposta[i]['SUM(m.produtoDetectado)']}</td></tr>`
+                        }
+
+
+                    }
+
+                });
+            }
+            else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+
+    setTimeout(teste, 2000);
+
+};
