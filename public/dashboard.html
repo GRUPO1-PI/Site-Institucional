@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="obterDados4(), teste()">
+<body onload="obterDados4()">
 
     <header>
         <div class="container">
@@ -127,7 +127,25 @@
                 </div>
                 <div class="divGrafico" id="grafico3">
                     <div class="container" id="containerGeral">
-                        <canvas height="58vh" id="setoresGeral" class="grafico"></canvas>
+                        <h3>Alerta de Sensores por Esteira</h1>
+                        <table id="tabela2">
+                            <tr>
+                                <th>Seleção</th>
+                                <th>Higienização</th>
+                                <th>Processamento</th>
+                                <th>Embalagem</th>
+                                <th>Armazenamento</th>
+                                <th>Distribuição</th>
+                            </tr>
+                            <tr>
+                                <td id="td0" class="cedula"></td>
+                                <td id="td1" class="cedula"></td>
+                                <td id="td2" class="cedula"></td>
+                                <td id="td3" class="cedula"></td>
+                                <td id="td4" class="cedula"></td>
+                                <td id="td5" class="cedula"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

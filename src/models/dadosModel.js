@@ -30,9 +30,7 @@ function buscar3(esteira, setor) {
 
 function buscar4() {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado), st.nome FROM monitoramento AS m JOIN sensor AS s ON
-    m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira JOIN setor AS st ON e.idSetor = st.idSetor
-    GROUP BY st.nome`;
+    
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -49,9 +47,19 @@ function atualizar(sensor) {
 
 function atualizar2(esteira, setor) {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado), s.numSerie, MAX(dtMonitoramento) FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND 
     e.idSetor = ${setor} GROUP BY s.numSerie`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizar3() {
+
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira JOIN setor AS st ON e.idSetor = st.idSetor
+    GROUP BY st.nome`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -61,7 +69,7 @@ module.exports = {
     buscar,
     buscar3,
     buscar2,
-    buscar4,
     atualizar,
-    atualizar2
+    atualizar2,
+    atualizar3
 }

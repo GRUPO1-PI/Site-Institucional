@@ -61,26 +61,6 @@ function buscar3(req, res) {
         );
 }
 
-function buscar4(req, res) {
-
-    console.log(`Recuperando os últimos dados:`);
-
-    dadosModel.buscar4()
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-                console.log(resultado)
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-            console.log("Houve um erro ao buscar os últimos dados.", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        }
-        );
-}
-
 function atualizar(req, res) {
     var sensor = req.params.sensor;
     console.log(`Recuperando os últimos dados:`);
@@ -122,11 +102,31 @@ function atualizar2(req, res) {
         );
 }
 
+function atualizar3(req, res) {
+
+    console.log(`Recuperando os últimos dados:`);
+
+    dadosModel.atualizar3()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+                console.log(resultado)
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os últimos dados.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+        );
+}
+
 module.exports = {
     buscar,
     buscar2,
     buscar3,
-    buscar4,
     atualizar,
-    atualizar2
+    atualizar2,
+    atualizar3
 }

@@ -216,7 +216,7 @@ select {
 
 #grafico3 {
     width: 92.5%;
-    height: 36vh;
+    height: 30vh;
     margin-top: 0.1vh;
 }
 
@@ -242,22 +242,38 @@ table {
     border-radius: 20px;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #D9D9D9;
     font-size: 2vh;
-
+    
 }
 
 th {
     background-color: #D9D9D9;
     color: #333;
+    
+    
+}
+
+td {
+    padding: 5vh;
 
 }
 
 h3 {
-
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-size: 3vh;
     justify-self: center;
+
+}
+
+.cedula {
+
+    font-size: 3vh;
+    padding: 5vh;
 
 }

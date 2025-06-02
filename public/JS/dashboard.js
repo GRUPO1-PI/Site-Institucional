@@ -6,7 +6,7 @@ function obterDados() {
     var setor = select_setor.value
 
     document.getElementById('sensorIndividual').remove();
-    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento de Sensor Individual por Segundo</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+    document.getElementById('containerGrafico1').innerHTML = `<h3>Monitoramento de Sensor Individual por Segundo</h3> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
 
 
     fetch(`/dados/buscar/${setor}/${esteira}`, { cache: 'no-store' })
@@ -24,7 +24,7 @@ function obterDados() {
                     }
 
                     obterDados2()
-                    // obterDados3()
+                    obterDados3()
 
                 });
             } else {
@@ -41,7 +41,7 @@ function obterDados() {
 function obterDados2() {
     var sensor = select_sensor.value
     document.getElementById('sensorIndividual').remove();
-    document.getElementById('containerGrafico1').innerHTML = `<h2>Monitoramento de Sensor Individual por Segundo</h2> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
+    document.getElementById('containerGrafico1').innerHTML = `<h3>Monitoramento de Sensor Individual por Segundo</h3> <canvas height="115vh" id="sensorIndividual" class="grafico"></canvas>`;
 
     fetch(`/dados/buscar2/${sensor}`, { cache: 'no-store' })
         .then(function (response) {
@@ -70,7 +70,14 @@ function obterDados3() {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
-                    plotarGraficoBarra(resposta)
+
+                    for (var i = 0; i < resposta.length; i++) {
+
+                        tabela.innerHTML += `<tr><td>${resposta[i]['numSerie']}</td><td id='sensor${i+1}'>${resposta[i]['SUM(m.produtoDetectado)']}</td></tr>`;
+                    }
+
+                    atualizar2()
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -80,34 +87,12 @@ function obterDados3() {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         }
         );
-
-    document.getElementById('sensoresEsteira').remove();
-    document.getElementById('containerEsteira').innerHTML = `<h2 id="tituloSensorIndi">Monitoramento de Sensores por Esteira </h2> <canvas height="115vh" id="sensoresEsteira" class="grafico"></canvas>`;
 
 }
 
 function obterDados4() {
-
-    fetch(`/dados/buscar4`, { cache: 'no-store' })
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGraficoBarra2(resposta)
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        }
-        );
-
-    document.getElementById('setoresGeral').remove();
-    document.getElementById('containerGeral').innerHTML = `<h2 id="textoGraficoPorMinuto">Monitoramento de Alertas por Setor</h2><canvas height="58vh" id="setoresGeral" class="grafico"></canvas>`
-    obterDados()
+   obterDados()
+   atualizar3()
 }
 
 function plotarGrafico(resposta) {
@@ -165,143 +150,6 @@ function plotarGrafico(resposta) {
     proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 1000);
 }
 
-// function plotarGraficoBarra(resposta) {
-
-//     console.log('iniciando plotagem do gráfico...');
-
-//     let labels = []
-
-//     let dados = {
-
-//         labels: labels,
-//         datasets: [{
-//             label: resposta[0]['numSerie'],
-//             data: [],
-//             fill: false,
-//             borderColor: ['#002B4D'],
-//             backgroundColor: ['#002B4D'],
-//             tension: 0.1
-//         },
-//         {
-//             label: resposta[1]['numSerie'],
-//             data: [],
-//             borderColor: ['#6699CC'],
-//             backgroundColor: ['#6699CC'],
-//         }]
-//     }
-
-//     console.log('----------------------------------------------')
-//     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-//     console.log(resposta)
-
-
-//     for (var i = 0; i < 2; i++) {
-//         var registro = resposta[i]['SUM(m.produtoDetectado)'];
-//         var registro2 = resposta[i]['MAX(dtMonitoramento)']
-//         dados.datasets[i].data.push(registro);
-//         labels.push(registro2);
-//     }
-
-//     console.log('----------------------------------------------')
-//     console.log('O gráfico será plotado com os respectivos valores:')
-//     console.log('Labels:')
-//     console.log(labels)
-//     console.log('Dados:')
-//     console.log(dados.datasets)
-//     console.log('----------------------------------------------')
-
-//     const config = {
-//         type: 'line',
-//         data: dados,
-//     };
-
-//     myChart2 = new Chart(
-//         document.getElementById(`sensoresEsteira`),
-//         config
-//     );
-
-//     proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart), 10000);
-// }
-
-function plotarGraficoBarra2(resposta) {
-
-    console.log('iniciando plotagem do gráfico...');
-
-    let labels = ['', '', '', '', '', '']
-
-    let dados = {
-
-        labels: labels,
-        datasets: [{
-            label: 'Seleção',
-            data: [],
-            fill: false,
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            tension: 0.1
-        },
-        {
-            label: resposta[1]['nome'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-        },
-        {
-            label: resposta[2]['nome'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-        },
-        {
-            label: resposta[3]['nome'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-        },
-        {
-            label: resposta[4]['nome'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-        },
-        {
-            label: resposta[5]['nome'],
-            data: [],
-            borderColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-            backgroundColor: ['#002B4D', 'blue', '#6699CC', '#90EE90', '#006400', '#05081c'],
-        },]
-    }
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
-
-
-    for (var i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        dados.datasets[0].data.push(registro['SUM(m.produtoDetectado)']);
-    }
-
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels)
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
-
-    const config = {
-        type: 'bar',
-        data: dados,
-    };
-
-    myChart = new Chart(
-        document.getElementById(`setoresGeral`),
-        config
-    );
-
-}
-
 function atualizarGrafico(dados, myChart) {
     var sensor = select_sensor.value
 
@@ -352,50 +200,6 @@ function atualizarGrafico(dados, myChart) {
 
 }
 
-function atualizarGrafico2(dados, myChart2) {
-    var esteira = select_esteira.value
-    var setor = select_setor.value
-
-    fetch(`/dados/atualizar2/${esteira}/${setor}`, { cache: 'no-store' })
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos atualizar: ${JSON.stringify(novoRegistro)} `);
-                    console.log(`Dados atuais do gráfico atualizar2: `);
-                    console.log(dados)
-
-                    if (dados.datasets[0].data.length > 7) {
-                        dados.datasets[0].data[0].shift()
-                        dados.datasets[1].data[0].shift()
-                        dados.labels.shift()
-                    }
-
-                    dados.labels.push(novoRegistro[0]['MAX(dtMonitoramento)'])
-                    dados.datasets[0].data.push(novoRegistro[0]['SUM(m.produtoDetectado)'])
-                    dados.datasets[0].data.push(novoRegistro[1]['SUM(m.produtoDetectado)'])
-
-                    myChart2.update();
-
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-
-                    console.log(dados.datasets[0].data['SUM(m.produtoDetectado)'])
-
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart2), 10000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados, myChart2), 10000);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p / gráfico: ${error.message} `);
-        });
-
-}
-
 function logout(event) {
     if (confirm('Tem certeza que deseja fazer logout?')) {
         window.location.href = './dashboard.html'
@@ -404,29 +208,22 @@ function logout(event) {
     }
 }
 
-// Teste Tabela
-
-function teste() {
-
-
-    tabela.innerHTML = '<tr><th>Sensor</th><th>Alertas</th></tr>';
+function atualizar2() {
 
     var esteira = select_esteira.value
     var setor = select_setor.value
 
-    fetch(`/dados/buscar3/${esteira}/${setor}`, { cache: 'no-store' })
+    fetch(`/dados/atualizar2/${esteira}/${setor}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+                    // console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
 
-                    if (resposta != undefined) {
-                        for (var i = 0; i < resposta.length; i++) {
-                            tabela.innerHTML += `<tr><td>${resposta[i]['numSerie']}</td><td>${resposta[i]['SUM(m.produtoDetectado)']}</td></tr>`
-                        }
-
-
+                    // if (resposta != undefined) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        document.getElementById(`sensor${i + 1}`).innerHTML = resposta[i]['SUM(m.produtoDetectado)']
                     }
+                    // }
 
                 });
             }
@@ -439,6 +236,35 @@ function teste() {
         }
         );
 
-    setTimeout(teste, 2000);
+    setTimeout(atualizar2, 2000);
+
+};
+
+function atualizar3() {
+
+    fetch(`/dados/atualizar3`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    // console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+
+                    // if (resposta != undefined) {
+                    for (var i = 0; i < resposta.length; i++) {
+                        document.getElementById(`td${i}`).innerHTML = resposta[i]['SUM(m.produtoDetectado)']
+                    }
+                    // }
+
+                });
+            }
+            else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+
+    setTimeout(atualizar3, 2000);
 
 };
