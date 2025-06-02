@@ -66,6 +66,12 @@
                 <select onchange="obterDados()" id="select_esteira">
                     <option value="1">Esteira 1</option>
                     <option value="2">Esteira 2</option>
+                    <option value="3">Esteira 3</option>
+                    <option value="4">Esteira 4</option>
+                    <option value="5">Esteira 5</option>
+                    <option value="6">Esteira 6</option>
+                    <option value="7">Esteira 7</option>
+                    <option value="8">Esteira 8</option>
                 </select>
             </div>
             <div class="filtroSelect">
@@ -81,28 +87,23 @@
 
             <div class="topCards">
                 <div class="card">
-                    <img src="../IMG/alerta.png" alt="">
+                    <!-- <img src="../IMG/alerta.png" alt=""> -->
                     <div class="info">
-                        <p id="KPI1_paragrafo">KPI</p>
+                        <p class="KPI1_paragrafo">Número de Alertas da Esteira Atual</p>
+                        <p id="numAlertasEsteira"></p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../IMG/setor.png" alt="">
                     <div class="info">
-                        <p id="KPI1_paragrafo">KPI</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="../IMG/alerta.png" alt="">
-                    <div class="info">
-                        <p id="KPI1_paragrafo">KPI</p>
+                        <p class="KPI1_paragrafo">Esteira com Maior Número de Alertas por Setor</p>
+                        <p id="numAlertasEsteira2"></p>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="../IMG/setor.png" alt="">
                     <div class="info">
-                        <p id="KPI2_paragrafo">KPI</p>
+                        <p class="KPI1_paragrafo">Número de Alertas Totais da Fábrica</p>
+                        <p id="numAlertasEsteira3"></p>
                     </div>
                 </div>
             </div>
@@ -127,7 +128,7 @@
                 </div>
                 <div class="divGrafico" id="grafico3">
                     <div class="container" id="containerGeral">
-                        <h3>Alerta de Sensores por Esteira</h1>
+                        <h3>Alerta de Sensores por Setor</h1>
                         <table id="tabela2">
                             <tr>
                                 <th>Seleção</th>

@@ -71,9 +71,11 @@ function obterDados3() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
 
+                    tabela.innerHTML = `<tr><th>Sensor</th><th>Alertas</th></tr>`                   
+
                     for (var i = 0; i < resposta.length; i++) {
 
-                        tabela.innerHTML += `<tr><td>${resposta[i]['numSerie']}</td><td id='sensor${i+1}'>${resposta[i]['SUM(m.produtoDetectado)']}</td></tr>`;
+                        tabela.innerHTML += `<tr><td>${resposta[i]['numSerie']}</td><td id='sensor${i + 1}'>${resposta[i]['SUM(m.produtoDetectado)']}</td></tr>`;
                     }
 
                     atualizar2()
@@ -91,8 +93,11 @@ function obterDados3() {
 }
 
 function obterDados4() {
-   obterDados()
-   atualizar3()
+    obterDados()
+    atualizar3()
+    exibirKPI1()
+    exibirKPI2()
+    exibirKPI3()
 }
 
 function plotarGrafico(resposta) {
@@ -268,3 +273,98 @@ function atualizar3() {
     setTimeout(atualizar3, 2000);
 
 };
+
+function exibirKPI1(){
+
+    var esteira = select_esteira.value
+    var setor = select_setor.value
+
+    fetch(`/dados/exibirKPI1/${esteira}/${setor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);                 
+            
+                    document.getElementById('numAlertasEsteira').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
+
+                    exibirKPI1()
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+}
+
+function exibirKPI2(){
+
+    var setor = select_setor.value
+    var alertas = []
+    var maior = 0
+
+    fetch(`/dados/exibirKPI2/${setor}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);   
+                    
+                    for(var i = 0; i < resposta.length; i++){
+                        alertas.push(resposta[i]['SUM(m.produtoDetectado)'])
+                    }
+
+                    for(var i = 0; i < alertas.length; i++){
+                        var alerta_atual = alertas[i]
+
+                        if(maior < alerta_atual){
+                            maior = alerta_atual
+                        }
+                    }
+
+                    for(var i = 0; i < alertas.length; i++){
+                        var alerta_atual = alertas[i]
+
+                        if(maior == alerta_atual){
+                            document.getElementById('numAlertasEsteira2').innerHTML = `Esteira ${resposta[i].numero}`
+                        }
+
+                    }
+
+                    exibirKPI2()
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+}
+
+function exibirKPI3(){
+
+    fetch(`/dados/exibirKPI3`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);   
+                    
+                    document.getElementById('numAlertasEsteira3').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
+
+                    exibirKPI3()
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        }
+        );
+}

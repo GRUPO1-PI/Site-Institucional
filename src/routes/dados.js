@@ -27,4 +27,16 @@ router.get(`/atualizar3/`, function (req, res) {
     dadosController.atualizar3(req, res);
 });
 
+router.get(`/exibirKPI1/:esteira/:setor`, function (req, res) {
+    dadosController.exibirKPI1(req, res);
+});
+
+router.get(`/exibirKPI2/:setor`, function (req, res) {
+    dadosController.exibirKPI2(req, res);
+});
+
+router.get(`/exibirKPI3`, function (req, res) {
+    dadosController.exibirKPI3(req, res);
+});
+
 module.exports = router;
