@@ -198,30 +198,30 @@
             var totalValorSensor = totalSensor.toFixed() * precoSensor;
 
             if (setor1 > 0) {
-                mensagemM += `<b>Este setor precisará de ${(setor1 / 4).toFixed()} pares de sensores</b>`;
+                mensagemM += `<b>O setor de Seleção de Materia Prima precisará de ${(setor1 / 4).toFixed()} pares de sensores</b>`;
             }
             if (setor2 > 0) {
-                mensagemH += `<b>Este setor precisará de ${(setor2 / 4).toFixed()} pares de sensores</b>`;
+                mensagemH += `<b>O setor de Higienização precisará de ${(setor2 / 4).toFixed()} pares de sensores</b>`;
             }
             if (setor3 > 0) {
-                mensagemP += `<b>Este setor precisará de ${(setor3 / 4).toFixed()} pares de sensores</b>`;
+                mensagemP += `<b>O setor de Processamento precisará de ${(setor3 / 4).toFixed()} pares de sensores</b>`;
             }
             if (setor4 > 0) {
-                mensagemE += `<b>Este setor precisará de ${(setor4 / 4).toFixed()} pares de sensores</b>`;
+                mensagemE += `<b>O setor de Embalagem precisará de ${(setor4 / 4).toFixed()} pares de sensores</b>`;
             }
             if (setor5 > 0) {
-                mensagemA += `<b>Este setor precisará de ${(setor5 / 4).toFixed()} pares de sensores</b>`;
+                mensagemA += `<b>O setor de Armazenamento precisará de ${(setor5 / 4).toFixed()} pares de sensores</b>`;
             }
             if (setor6 > 0) {
-                mensagemD += `<b>Este setor precisará de ${(setor6 / 4).toFixed()} pares de sensores</b>`;
+                mensagemD += `<b>O setor de Distribuição precisará de ${(setor6 / 4).toFixed()} pares de sensores</b>`;
             }
-            mensagemT.innerHTML = `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color: rgb(255, 0, 0);"> R$${totalValorSensor}</span>.</b>`
+            mensagemT.innerHTML = `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color:#71d60c ;"> R$${totalValorSensor}</span>.</b>`
 
             // Mensagem final
             var valorEconomizado = totalPerda - totalValorSensor;
 
             if (desvio > 0 && tempo > 0) {
-                mensagemT.innerHTML += `<b>Com o nosso serviço de custo R$${totalValorSensor}, a economia de sua empresa seria de  <span style="color: #6bbd19;">R$${valorEconomizado.toFixed(2)}</span>, com o aumento de  <span style="color: #6bbd19;">${((valorEconomizado / totalPerda * 100) / 4).toFixed(2)}% </span>semanal.</b>`;
+                mensagemT.innerHTML += `<b>Com o nosso serviço de custo R$${totalValorSensor}, a economia de sua empresa seria de  <span style="color: #6bbd19;">R$${valorEconomizado.toFixed(2)}</span>, com o aumento de  <span style="#71d60c;">${((valorEconomizado / totalPerda * 100) / 4).toFixed(2)}% </span>semanal.</b>`;
             } else {
                 mensagemT.innerHTML += `Valor não inserido, preencha todos os campos necessários.`;
             }
@@ -234,11 +234,11 @@
         ${mensagemE}<br>
         ${mensagemA}<br>
         ${mensagemD}<br>
-        ${mensagemErroO ? `<b style="color: red">${mensagemErroO}</b><br>` : ''}
+        ${mensagemErroO ? `<b style="color: green">${mensagemErroO}</b><br>` : ''}
         ${`<br>`}
         <b>${totalMetros} metros de esteira</b><br>
         <b>${totalSensor.toFixed()} pares de sensores</b><br>
-        <b><span style="color: red">R$${totalValorSensor}</span> de custo estimado</b>
+        <b><span style="color: green">R$${totalValorSensor}</span> de custo estimado</b>
         `;
         }
     }
