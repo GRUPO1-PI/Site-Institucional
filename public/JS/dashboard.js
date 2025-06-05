@@ -71,7 +71,7 @@ function obterDados3() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
 
-                    tabela.innerHTML = `<tr><th>Sensor</th><th>Alertas</th></tr>`                   
+                    tabela.innerHTML = `<tr><th>Sensor</th><th>Alertas</th></tr>`
 
                     for (var i = 0; i < resposta.length; i++) {
 
@@ -274,7 +274,7 @@ function atualizar3() {
 
 };
 
-function exibirKPI1(){
+function exibirKPI1() {
 
     var esteira = select_esteira.value
     var setor = select_setor.value
@@ -283,8 +283,8 @@ function exibirKPI1(){
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);                 
-            
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+
                     document.getElementById('numAlertasEsteira').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
 
                     exibirKPI1()
@@ -300,7 +300,7 @@ function exibirKPI1(){
         );
 }
 
-function exibirKPI2(){
+function exibirKPI2() {
 
     var setor = select_setor.value
     var alertas = []
@@ -310,24 +310,24 @@ function exibirKPI2(){
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);   
-                    
-                    for(var i = 0; i < resposta.length; i++){
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+
+                    for (var i = 0; i < resposta.length; i++) {
                         alertas.push(resposta[i]['SUM(m.produtoDetectado)'])
                     }
 
-                    for(var i = 0; i < alertas.length; i++){
+                    for (var i = 0; i < alertas.length; i++) {
                         var alerta_atual = alertas[i]
 
-                        if(maior < alerta_atual){
+                        if (maior < alerta_atual) {
                             maior = alerta_atual
                         }
                     }
 
-                    for(var i = 0; i < alertas.length; i++){
+                    for (var i = 0; i < alertas.length; i++) {
                         var alerta_atual = alertas[i]
 
-                        if(maior == alerta_atual){
+                        if (maior == alerta_atual) {
                             document.getElementById('numAlertasEsteira2').innerHTML = `Esteira ${resposta[i].numero}`
                         }
 
@@ -346,14 +346,25 @@ function exibirKPI2(){
         );
 }
 
-function exibirKPI3(){
+function exibirKPI3() {
 
     fetch(`/dados/exibirKPI3`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);   
-                    
+                    console.log(`Dados recebidos 3: ${JSON.stringify(resposta)}`);
+
+                    document.getElementById('numAlertasEsteira3').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
+
+                    if (resposta[0]['SUM(m.produtoDetectado)'] <= 5000) {
+                        document.getElementById('situacaoFabrica').innerHTML = `<font color="#00ff00">Bom`
+                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 10000) {
+                        document.getElementById('situacaoFabrica').innerHTML = `<font color="#ffea00">Regular`
+                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 15000) {
+                        document.getElementById('situacaoFabrica').innerHTML = `<font color="##ff9100">Atenção`
+                    } else {
+                        document.getElementById('situacaoFabrica').innerHTML = `<font color="##ff0000">Crítico`
+                    }
                     document.getElementById('numAlertasEsteira3').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
 
                     exibirKPI3()
