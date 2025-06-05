@@ -1,6 +1,13 @@
-body{
-    margin: 0;
-    font-family: sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #172735;
+  color: #264259;
 }
 
 header {
@@ -11,30 +18,15 @@ header {
   align-items: center;
 }
 
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
 header .logo img {
   height: 50px;
-}
-
-nav {
-  display: flex;
   align-items: center;
-  gap: 15px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-
+  gap: 20px;
 }
 
 nav a {
@@ -44,56 +36,9 @@ nav a {
   text-align: center;
   justify-content: center;
   display: flex;
-  font-size: 20px;
+  font-size: 16px;
 
 }
-
-nav .logout img {
-  height: 50px;
-}
-
-.Sonicorp{
-  display: flex;
-  justify-content: flex-start;
-  margin-left: 0;
-  padding: 5px;
-}
-.Sonicorp img {
- width: 200px;
- padding-right: 200px;
-}
-
-.Sonicorp{
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 0;
-    padding: 5px;
-}
-.Sonicorp img {
-   width: 200px;
-   padding-right: 200px;
-}
-
-
-.lista {
-    list-style-type: none;
-}
-.agora {
-    font-weight: bolder;
-}
-
-.perfil{
-    margin-left: auto;
-    padding-right: 20px;
-}
-.perfil img{
-    display: flex;
-    width: 35px;
-    height: 35px;
-    filter: brightness(0) invert(1);
-    cursor: pointer;
-}
-
 
 .formulario {
     background-color: #172735;

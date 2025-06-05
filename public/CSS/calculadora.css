@@ -20,21 +20,13 @@ header {
 
 header .logo img {
   height: 50px;
-}
-
-nav {
-  display: flex;
   align-items: center;
-  gap: 15px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-
+  gap: 20px;
 }
 
 nav a {
@@ -44,14 +36,9 @@ nav a {
   text-align: center;
   justify-content: center;
   display: flex;
-  font-size: 20px;
+  font-size: 16px;
 
 }
-
-nav .logout img {
-  height: 50px;
-}
-
 section {
   padding: 40px 20px;
   background-color: #c3ccd4;

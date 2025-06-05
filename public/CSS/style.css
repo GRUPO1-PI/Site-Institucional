@@ -1,20 +1,77 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #63B1BC;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #172735;
+  color: #264259;
+}
+
+header {
+  background-color: #264259;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+  /* justify-content: center; */
+
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+
+}
+
+.logout img {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
 }
 
 #container {
     width: 80%;
     margin: 50px auto;
     text-align: center;
+    margin-top: 100px;
 }
 
 h1 {
-    color: #1F2A44;
+    color: #4497e0;
+    margin-bottom: 20px;
 }
-
+h3{
+    color: #4497e0;
+}
 textarea[type="text"] {
     padding: 8px;
     font-size: 16px;
@@ -31,13 +88,14 @@ button {
 }
 
 button {
-    background-color: #ED145B;
+    background-color: #2f526e;
     color: #FFFFFF;
     border: none;
+    margin-bottom: 20px;
 }
 
 button:hover {
-    background-color: #EFB661;
+    background-color: #73abdb;
 }
 
 #resposta {
@@ -48,4 +106,10 @@ button:hover {
     border: 1px solid #63666A;
     text-align: left;
     display: none;
+}
+#container{
+  background-color: #c3ccd4;
+  width: 100vh;
+  padding: 10vh;
+  border-radius: 2vh;
 }
