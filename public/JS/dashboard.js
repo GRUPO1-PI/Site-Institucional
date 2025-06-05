@@ -128,7 +128,7 @@ function plotarGrafico(resposta) {
     for (var i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
 
-        labels.push(registro.dtMonitoramento);
+        labels.push(registro.dtRegistro);
         dados.datasets[0].data.push(registro.produtoDetectado);
         labels[i] = labels[i].slice(11, 19);
 
@@ -167,19 +167,19 @@ function atualizarGrafico(dados, myChart) {
                     console.log(`Dados atuais do gráfico atualizar: `);
                     console.log(dados);
 
-                    novoRegistro[0].dtMonitoramento = novoRegistro[0].dtMonitoramento.slice(11, 19);
-                    if (novoRegistro[0].dtMonitoramento == dados.labels[dados.labels.length - 1]) {
+                    novoRegistro[0].dtRegistro = novoRegistro[0].dtRegistro.slice(11, 19);
+                    if (novoRegistro[0].dtRegsitro == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
                         console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dtMonitoramento)
+                        console.log(novoRegistro[0].dtRegistro)
                         console.log("Horário do último dado capturado:")
                         console.log(dados.labels[dados.labels.length - 1])
                         console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].dtMonitoramento); // incluir um novo momento
+                        dados.labels.push(novoRegistro[0].dtRegistro); // incluir um novo momento
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[0].data.push(novoRegistro[0].produtoDetectado); // incluir uma nova medida de umidade

@@ -318,3 +318,11 @@ h3 {
     margin-top: 0;
     justify-content: center
 }
+
+#situacaoFabrica {
+    display: flex;
+    color: white;
+    font-size: 4vh;
+    margin-top: 0;
+    justify-content: center
+}

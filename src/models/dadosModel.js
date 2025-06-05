@@ -11,8 +11,8 @@ function buscar(setor, esteira) {
 
 function buscar2(sensor) {
 
-    var instrucaoSql = `SELECT produtoDetectado, dtMonitoramento FROM monitoramento AS m JOIN sensor AS s ON
-    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idMonitoramento DESC LIMIT 10`;
+    var instrucaoSql = `SELECT produtoDetectado, dtRegistro FROM registro AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idRegistro DESC LIMIT 10`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -20,7 +20,7 @@ function buscar2(sensor) {
 
 function buscar3(esteira, setor) {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado), s.numSerie FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado), s.numSerie FROM registro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND 
     e.idSetor = ${setor} GROUP BY s.numSerie`;
 
@@ -30,8 +30,8 @@ function buscar3(esteira, setor) {
 
 function atualizar(sensor) {
 
-    var instrucaoSql = `SELECT produtoDetectado, dtMonitoramento FROM monitoramento AS m JOIN sensor AS s ON
-    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idMonitoramento DESC LIMIT 1`;
+    var instrucaoSql = `SELECT produtoDetectado, dtRegistro FROM registro AS m JOIN sensor AS s ON
+    m.fkSensor = s.idSensor WHERE s.numSerie = '${sensor}' ORDER BY idRegistro DESC LIMIT 1`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -39,7 +39,7 @@ function atualizar(sensor) {
 
 function atualizar2(esteira, setor) {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM registro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND 
     e.idSetor = ${setor} GROUP BY s.numSerie`;
 
@@ -49,7 +49,7 @@ function atualizar2(esteira, setor) {
 
 function atualizar3() {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM registro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira JOIN setor AS st ON e.idSetor = st.idSetor
     GROUP BY st.nome`;
 
@@ -59,7 +59,7 @@ function atualizar3() {
 
 function exibirKPI1(esteira, setor) {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM registro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira WHERE e.numero = '${esteira}' AND 
     e.idSetor = ${setor} GROUP BY e.numero`;
 
@@ -69,7 +69,7 @@ function exibirKPI1(esteira, setor) {
 
 function exibirKPI2(setor) {
 
-    var instrucaoSql = `SELECT e.numero, SUM(m.produtoDetectado) FROM monitoramento AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT e.numero, SUM(m.produtoDetectado) FROM regstro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira JOIN setor AS st ON e.idSetor = st.idSetor WHERE e.idSetor = ${setor} GROUP BY e.numero, st.idSetor`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -78,7 +78,7 @@ function exibirKPI2(setor) {
 
 function exibirKPI3() {
 
-    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM monitoramento m`;
+    var instrucaoSql = `SELECT SUM(m.produtoDetectado) FROM registro m`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
