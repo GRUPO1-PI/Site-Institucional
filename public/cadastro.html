@@ -5,39 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonicorp - Cadastro</title>
-    <link rel="stylesheet" href="../CSS/paginaCadastro.css">
+    <link rel="stylesheet" href="CSS/paginaCadastro.css">
     <link rel="shortcut icon " href="../IMG/sonicorp.png">
-    <script src="../JS/validarCadastro.js"></script>
+    <script src="JS/validarCadastro.js"></script>
 
 </head>
 
 <body onload="esconder()">
     <header>
-
-        <div class="container">
-            <div class="Sonicorp">
-                <a href="./index.html"> <img src="../IMG/sonicorp_logo-sem fundo.png" alt="Sonicorp - Logo"></a>
-            </div>
-            <ul class="navbar">
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="./calculadoraFinanceira.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li>
-                    <a href="./login.html">Login</a>
-                </li>
-                <li class="agora">
-                    <a href="./cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-            <div class="perfil">
-                <a href="./login.html"><img src="../IMG/iconePerfil.png" alt="Ícone de Perfil"></a>
-            </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./IMG/sonicorp_logo-sem fundo.png" alt="Sonicor Logo">
+            </a>
         </div>
 
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./calculadora.html">Simulador</a></li>
+                <li>|</li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./cadastro.html">Cadastro</a></li>
+            </ul>
+
+            <div class="logout">
+                <a href="./login.html"><img src="./IMG/iconePerfil.png" alt="Ícone de Perfil"></a>
+            </div>
+        </nav>
     </header>
 
     <div class="formulario" id="cadastro1">
@@ -58,49 +52,44 @@
                     <input type="text" id="iptRazaoSocial" oninput="validarRazaoSocialCorreto()"
                         onblur="validarRazaoSocialErrado()">
                     <p id="legendaRazaoSocial" class="legenda"></p>
-                    <h4>E-mail:</h4>
-                    <input type="email" id="iptEmail" oninput="validarEmailCorreto()" onblur="validarEmailErrado()">
-                    <p id="legendaEmail" class="legenda"></p>
-
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone de Suporte:</h4>
-                            <input type="text" id="iptTelefoneSuporte" maxlength="11"
-                                oninput="validarTelefoneSuporteCorreto()" onblur="validarTelefoneSuporteErrado()">
+                            <input type="text" id="iptTelefoneSuporte" maxlength="11" oninput="validarTelefoneSuporteCorreto()" onblur="validarTelefoneSuporteErrado()" value="12345678900">
                             <p id="legendaTelefoneSuporte" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CNPJ:</h4>
-                            <input type="text" id="iptCnpj" maxlength="14" oninput="validarCnpjCorreto()"
-                                onblur="validarCnpjErrado()">
+                            <input type="text" id="iptCnpj" maxlength="14" oninput="validarCnpjCorreto()" onblur="validarCnpjErrado()" value="12345678900000">
                             <p id="legendaCnpj" class="legenda"></p>
                         </div>
                     </div>
                     <div></div>
                     <h4>Nome do Representante:</h4>
-                    <input type="text" id="iptRepresentante" oninput="validarNomeRepresentanteCorreto()"
-                        onblur="validarNomeRepresentanteErrado()">
+                    <input type="text" id="iptRepresentante" oninput="validarNomeRepresentanteCorreto()" onblur="validarNomeRepresentanteErrado()" value="Representante">
                     <p id="legendaRepresentante" class="legenda"></p>
+                    <h4>E-mail do Representante:</h4>
+                    <input type="email" id="iptEmail" oninput="validarEmailCorreto()" onblur="validarEmailErrado()" value="representante@email.com">
+                    <p id="legendaEmail" class="legenda"></p>
+
+
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Telefone do Representante:</h4>
-                            <input type="text" id="iptTelefoneRepresentante" maxlength="11"
-                                oninput="validarTelefoneRepresentanteCorreto()"
-                                onblur="validarTelefoneRepresentanteErrado()">
+                            <input type="text" id="iptTelefoneRepresentante" maxlength="11" oninput="validarTelefoneRepresentanteCorreto()" onblur="validarTelefoneRepresentanteErrado()" value="12345678901">
                             <p id="legendaTelefoneRepresentante" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CPF:</h4>
-                            <input type="text" id="iptCpf" maxlength="11" oninput="validarCpfCorreto()"
-                                onblur="validarCpfErrado()">
+                            <input type="text" id="iptCpf" maxlength="11" oninput="validarCpfCorreto()" onblur="validarCpfErrado()" value="12345678900">
                             <p id="legendaCpf" class="legenda"></p>
                         </div>
                     </div>
                     <h4>Senha:</h4>
-                    <input type="password" id="iptSenha" oninput="validarSenhaCorreta()" onblur="validarSenhaErrado()">
+                    <input type="password" id="iptSenha" oninput="validarSenhaCorreta()" onblur="validarSenhaErrado()" value="123456789Aa@">
                     <p id="legendaSenha" class="legenda"></p>
                     <div class="arrumar">
-                        <button onclick="avançar()">Próximo ➔</button>
+                        <button onclick="validarSenhaCorreta(), validarCpfCorreto(), validarTelefoneRepresentanteCorreto(), validarEmailCorreto(), validarNomeRepresentanteCorreto(), validarCnpjCorreto(), validarTelefoneSuporteCorreto(), validarRazaoSocialCorreto(), avançar()">Próximo ➔</button>
                     </div>
                 </div>
 
@@ -151,8 +140,7 @@
                         </div>
                         <div class="campo">
                             <h4>Cidade:</h4>
-                            <input type="text" id="input_cidade" oninput="validarCidadeCorreta()"
-                                onblur="validarCidadeErrada()">
+                            <input type="text" id="input_cidade" oninput="validarCidadeCorreta()" onblur="validarCidadeErrada()" value="Cidade">
                             <p id="legendaCidade" class="legenda"></p>
                         </div>
                     </div>
@@ -160,13 +148,12 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Bairro:</h4>
-                            <input type="text" id="input_bairro" oninput="validarBairroCorreto()"
-                                onblur="validarBairroErrado()">
+                            <input type="text" id="input_bairro" oninput="validarBairroCorreto()" onblur="validarBairroErrado()" value="Bairro">
                             <p id="legendaBairro" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>CEP:</h4>
-                            <input type="text" id="input_cep" maxlength="8" oninput="validarCepCorreto()" onblur="validarCepErrado()">
+                            <input type="text" id="input_cep" maxlength="8" oninput="validarCepCorreto()" onblur="validarCepErrado()" value="12345678">
                             <p id="legendaCep" class="legenda"></p>
                         </div>
                     </div>
@@ -174,12 +161,12 @@
                     <div class="mesmo">
                         <div class="campo">
                             <h4>Logradouro:</h4>
-                            <input type="text" id="input_logradouro" oninput="validarLogradouroCorreto()" onblur="validarLogradouroErrado()">
+                            <input type="text" id="input_logradouro" oninput="validarLogradouroCorreto()" onblur="validarLogradouroErrado()" value="Logradouro">
                             <p id="legendaLogradouro" class="legenda"></p>
                         </div>
                         <div class="campo">
                             <h4>Número</h4>
-                            <input type="text" id="input_numero" oninput="validarNumCorreto()" onblur="validarNumErrado()">
+                            <input type="text" id="input_numero" oninput="validarNumCorreto()" onblur="validarNumErrado()" value="123">
                             <p id="legendaNum" class="legenda"></p>
                         </div>
                     </div>
@@ -192,7 +179,7 @@
                 <div class="alinhar">
                     <div class="arrumar">
                         <button class="botao" id="botao1" onclick="voltar()">Voltar</button>
-                        <button class="botao" id="botao2" onclick="validar()">Cadastre-se</button>
+                        <button class="botao" id="botao2" onclick="validarNumCorreto(), validarLogradouroCorreto(), validarCepCorreto(), validarBairroCorreto(), validarCidadeCorreta(), validar()">Cadastre-se</button>
                     </div>
                 </div>
 
@@ -204,14 +191,13 @@
         <div class="container">
 
             <div class="logoFooter">
-                <a href="C:\Users\flavi\Site-Institucional\index.html"> <img src="../IMG/sonicorp.png"
-                        alt="Logo - Sonicorp"></a>
+                <a href="./index.html"> <img src="./IMG/sonicorp.png" alt="Logo - Sonicorp"></a>
             </div>
 
             <div class="colunas">
-                <div class="coluna"> <!-- modificar com os links futuramente (bem futuramente) -->
+                <div class="coluna">
                     <h3>Início</h3>
-                    <p><a class="incio" href="C:\Users\flavi\Site-Institucional\index.html">Home</a></p>
+                    <p><a class="incio" href="./index.html">Home</a></p>
                     <p><a class="incio" href="./calculadoraFinanceira.html">Simulador</a></p>
                     <p><a class="incio" href="./login.html">Login</a></p>
                     <p><a class="incio" href="./cadastro.html">Cadastro</a></p>
@@ -230,15 +216,15 @@
 
             <div class="contatoSocial">
                 <div class="icones">
-                    <a href="#" target="_blank"><img src="../IMG/iconeTwitter.png" alt="Ícone do Twitter (X)"></a>
-                    <a href="#" target="_blank"><img src="../IMG/iconeInstagram.png" alt="Ícone do Instagram"></a>
-                    <a href="#" target="_blank"><img src="../IMG/iconeLinkedin.png" alt="Ícone do Linkedin"></a>
+                    <a href="#" target="_blank"><img src="./IMG/iconeTwitter.png" alt="Ícone do Twitter (X)"></a>
+                    <a href="#" target="_blank"><img src="./IMG/iconeInstagram.png" alt="Ícone do Instagram"></a>
+                    <a href="#" target="_blank"><img src="./IMG/iconeLinkedin.png" alt="Ícone do Linkedin"></a>
                 </div>
                 <button>Contato</button>
             </div>
 
         </div>
-
+        </div>
         <div class="corp">
             <p>© Copyright - Sonicorp - Todos os Direitos Reservados</p>
         </div>

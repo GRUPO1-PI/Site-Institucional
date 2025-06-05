@@ -5,6 +5,10 @@ body{
 
 header {
   background-color: #264259;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header .container {
@@ -12,6 +16,40 @@ header .container {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 20px;
+
+}
+
+nav .logout img {
+  height: 50px;
 }
 
 .Sonicorp{
@@ -25,20 +63,6 @@ header .container {
  padding-right: 200px;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  color: #ffffff;
-  list-style: none;
-  width: 300px;
-  padding-left: 450px;
-  gap: 30px;
-}
-
-.navbar a {
-  color: #ffffff;
-  text-decoration: none;
-}
 .lista {
   list-style-type: none;
 }
