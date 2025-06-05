@@ -49,6 +49,8 @@ function obterDados2() {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos 2: ${JSON.stringify(resposta)}`);
                     resposta.reverse()
+
+
                     plotarGrafico(resposta)
                 });
             } else {
@@ -102,7 +104,7 @@ function obterDados4() {
 
 function plotarGrafico(resposta) {
     var sensor = select_sensor.value
-
+        
     console.log('iniciando plotagem do gráfico...');
 
     let labels = [];
@@ -356,11 +358,11 @@ function exibirKPI3() {
 
                     document.getElementById('numAlertasEsteira3').innerHTML = resposta[0]['SUM(m.produtoDetectado)']
 
-                    if (resposta[0]['SUM(m.produtoDetectado)'] <= 5000) {
+                    if (resposta[0]['SUM(m.produtoDetectado)'] <= 500) {
                         document.getElementById('situacaoFabrica').innerHTML = `<font color="#00ff00">Bom`
-                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 10000) {
+                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 1000) {
                         document.getElementById('situacaoFabrica').innerHTML = `<font color="#ffea00">Regular`
-                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 15000) {
+                    } else if (resposta[0]['SUM(m.produtoDetectado)'] <= 1500) {
                         document.getElementById('situacaoFabrica').innerHTML = `<font color="##ff9100">Atenção`
                     } else {
                         document.getElementById('situacaoFabrica').innerHTML = `<font color="##ff0000">Crítico`
