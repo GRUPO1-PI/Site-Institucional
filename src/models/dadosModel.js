@@ -69,7 +69,7 @@ function exibirKPI1(esteira, setor) {
 
 function exibirKPI2(setor) {
 
-    var instrucaoSql = `SELECT e.numero, SUM(m.produtoDetectado) FROM regstro AS m JOIN sensor AS s ON
+    var instrucaoSql = `SELECT e.numero, SUM(m.produtoDetectado) FROM registro AS m JOIN sensor AS s ON
     m.fkSensor = s.idSensor JOIN esteira AS e ON s.fkEsteira = e.idEsteira JOIN setor AS st ON e.idSetor = st.idSetor WHERE e.idSetor = ${setor} GROUP BY e.numero, st.idSetor`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
