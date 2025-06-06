@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="shortcut icon " href="./IMG/sonicorp.png">
     <title>Simulador Financeiro</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -29,7 +31,7 @@
         <div>
             <h1>Calculadora Financeira</h1>
             <form action="#">
-                <label for="input_desvio">Quantidade de Paradas Indesejadas</label>
+                <label for="input_desvio">Quantidade de Paradas Indesejadas Mensais</label>
                 <input type="number" id="input_desvio" placeholder="Quantidade de Paradas">
 
                 <label for="input_mediaT">Qual a duração média dessas paradas? (em minutos)</label>
@@ -50,7 +52,8 @@
     <section class="form_orcamento">
         <div>
             <h1>Orçamento</h1>
-            <h3>Informe os metros de esteira em cada setor da produção. Caso não tenha um setor, deixe o campo em branco.</h3>
+            <h3>Informe os metros de esteira em cada setor da produção. Caso não tenha um setor, deixe o campo em
+                branco.</h3>
             <form action="#">
                 <label for="input_materiaP">Seleção de Materia Prima</label>
                 <input type="number" id="input_materiaP">
@@ -80,8 +83,9 @@
             <h2>Preencha os campos acima e clique no botão para ver os resultados.</h2>
 
             <button onclick="calcular()">Calcular</button>
-            
+
             <div id="mensagem_perda" style="margin-top: 20px;"></div>
+            <div id="mensagemT" style="margin-top: 20px;"></div>
             <div id="mensagem_orcamento" style="margin-top: 20px;"></div>
             <div id="mensagem_final" style="margin-top: 20px;"></div>
 
@@ -92,12 +96,11 @@
         <div class="container">
 
             <div class="logoFooter">
-                <a href="./index.html"> <img src="./IMG/sonicorp.png"
-                        alt="Logo - Sonicorp"></a>
+                <a href="./index.html"> <img src="./IMG/sonicorp.png" alt="Logo - Sonicorp"></a>
             </div>
 
             <div class="colunas">
-                <div class="coluna"> 
+                <div class="coluna">
                     <h3>Início</h3>
                     <p><a class="incio" href="./index.html">Home</a></p>
                     <p><a class="incio" href="./calculadoraFinanceira.html">Simulador</a></p>
@@ -131,9 +134,10 @@
             <p>© Copyright - Sonicorp - Todos os Direitos Reservados</p>
         </div>
 
-     </footer>
+    </footer>
 
 </body>
+
 </html>
 
 <script>
@@ -213,7 +217,8 @@
             if (setor6 > 0) {
                 mensagemD += `<b>O setor de Distribuição precisará de ${(setor6 / 4).toFixed()} pares de sensores</b>`;
             }
-            mensagemT.innerHTML = `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color:#71d60c ;"> R$${totalValorSensor}</span>.</b>`
+
+            mensagemT.innerHTML += `<b>Com um total de ${totalMetros} metros de esteira, você irá precisar de aproximadamente ${totalSensor.toFixed()} pares de sensores, que custará aproximados <span style="color:#71d60c ;"> R$${totalValorSensor}</span>.</b>`
 
             // Mensagem final
             var valorEconomizado = totalPerda - totalValorSensor;
@@ -224,8 +229,8 @@
                 mensagemT.innerHTML += `Valor não inserido, preencha todos os campos necessários.`;
             }
 
-                    document.getElementById("mensagem_perda").innerHTML = mensagemPerda;
-        document.getElementById("mensagem_orcamento").innerHTML = `
+            document.getElementById("mensagem_perda").innerHTML = mensagemPerda;
+            document.getElementById("mensagem_orcamento").innerHTML = `
         ${mensagemM}<br>
         ${mensagemH}<br>
         ${mensagemP}<br>
